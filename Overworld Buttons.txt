@@ -1,0 +1,189 @@
+//----- Variables -----------------------------------------------------------------------------------------------------
+
+attacker = 0
+
+
+
+//----- Green flag events ---------------------------------------------------------------------------------------------
+
+WhenGreenFlagClicked()
+{
+    Costume.GoToFrontBack(back);
+    Control.Wait(1);
+    Wait Until (title screen == 0);
+    Costume.GoToFrontBack(front);
+    Looks.SwitchCostumeTo(MAIN2);
+    Looks.SetSizeTo(200);
+    Control.CreateCloneOf(_myself_);
+    Looks.SwitchCostumeTo(R);
+    Control.CreateCloneOf(_myself_);
+    Looks.SwitchCostumeTo(L);
+    Control.CreateCloneOf(_myself_);
+    Forever
+    {
+        Looks.SwitchCostumeTo(MAIN);
+        If (Battleover? == 0.01)
+        {
+            Looks.SwitchCostumeTo(Operator.Join("lol", AREA));
+        }
+        Costume.GoToFrontBack(front);
+        Costume.GoToFrontBack(front);
+        If (Battleover? == 0)
+        {
+            Looks.Hide();
+        }
+        Else
+        {
+            Looks.Show();
+        }
+        Costume.GoToFrontBack(front);
+        Motion.GoToXY(-222, 161);
+        Looks.ClearGraphicEffects();
+    }
+}
+
+WhenGreenFlagClicked()
+{
+}
+
+
+//----- Sprite clicked events -----------------------------------------------------------------------------------------
+
+WhenThisSpriteClicked()
+{
+    If (Not ((story despite battle == 1)))
+    {
+        If ((Sensing.MouseX() < -203) And (Sensing.MouseY() > 144))
+        {
+            Call MENU;
+        }
+    }
+}
+
+
+//----- Broadcast received events -------------------------------------------------------------------------------------
+
+WhenBroadcastReceived(End)
+{
+    Looks.Hide();
+    Stop(other scripts in sprite);
+}
+
+
+//----- Start as clone ------------------------------------------------------------------------------------------------
+
+Control.WhenIStartAsClone()
+{
+    Forever
+    {
+        If (Costume.GetNumberName(number) == 3)
+        {
+            Costume.GoToFrontBack(front);
+            If (Battleover? == 1)
+            {
+                Looks.Show();
+            }
+            Else
+            {
+                Looks.Hide();
+            }
+            Costume.GoToFrontBack(front);
+            Motion.GoToXY(-186, 161);
+        }
+        Else
+        {
+            If (Costume.GetNumberName(number) == 4)
+            {
+                Costume.GoToFrontBack(front);
+                If (Battleover? == 0.01)
+                {
+                    Looks.Show();
+                    Motion.GoToXY(-219, 133);
+                }
+                Else
+                {
+                    Looks.Hide();
+                }
+            }
+            Else
+            {
+                Costume.GoToFrontBack(front);
+                If (Battleover? == 0.01)
+                {
+                    Looks.Show();
+                    Motion.GoToXY(-187, 133);
+                }
+                Else
+                {
+                    Looks.Hide();
+                }
+            }
+        }
+    }
+}
+
+
+//----- Custom blocks -------------------------------------------------------------------------------------------------
+
+Define MENU (warp=false)
+{
+    List.DeleteAll(A Message Log);
+    If (Motion.XPosition() < -221)
+    {
+        If (Battleover? == 0.01)
+        {
+            Event.Broadcast("HIDE");
+            Sound.Play(Bling1);
+            Battleover? = 1;
+        }
+        Else
+        {
+            Battleover? = 0.01;
+            Sound.Play(Bling1);
+            Event.Broadcast("Menustats");
+            Event.Broadcast("showstatus");
+        }
+    }
+    Else
+    {
+        If (Costume.GetNumberName(number) == 4)
+        {
+            Event.Broadcast("statmenuprev");
+            Sound.Play(Bling1);
+        }
+        Else
+        {
+            If (Costume.GetNumberName(number) == 5)
+            {
+                Event.Broadcast("statmenunext");
+                Sound.Play(Bling1);
+            }
+            Else
+            {
+            }
+        }
+    }
+}
+
+
+//----- Orphaned blocks -----------------------------------------------------------------------------------------------
+
+(760 - 610);
+
+(21 * 1.2);
+
+
+//----- Costumes ------------------------------------------------------------------------------------------------------
+
+lol1.svg
+lol2.svg
+lol3.svg
+lol4.svg
+MAIN.svg
+MAIN2.svg
+MAIN3.svg
+
+
+//----- Sounds --------------------------------------------------------------------------------------------------------
+
+Bling1.wav

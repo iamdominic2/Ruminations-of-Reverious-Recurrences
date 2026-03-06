@@ -1,0 +1,163 @@
+//----- Variables -----------------------------------------------------------------------------------------------------
+
+attacker = 0
+counter t = 0
+target = 0
+
+
+
+//----- Green flag events ---------------------------------------------------------------------------------------------
+
+WhenGreenFlagClicked()
+{
+    Looks.SetSizeTo(69);
+    Looks.Hide();
+}
+
+
+//----- Broadcast received events -------------------------------------------------------------------------------------
+
+WhenBroadcastReceived(animation)
+{
+    If (Looks.Size() == 69)
+    {
+        Motion.GoToXY(cx[Sensing.Of(target, Battle)], -15);
+        Control.CreateCloneOf(_myself_);
+    }
+}
+
+WhenBroadcastReceived(animation2)
+{
+    If (Looks.Size() == 69)
+    {
+        Motion.GoToXY(108, -26);
+        Motion.ChangeXBy(ani x offset);
+        Control.CreateCloneOf(_myself_);
+    }
+}
+
+
+//----- Start as clone ------------------------------------------------------------------------------------------------
+
+Control.WhenIStartAsClone()
+{
+    Looks.SwitchCostumeTo(animation);
+    If List.ContainsItem(zoom in animations, animation)
+    {
+        Looks.Show();
+        Looks.SetEffectTo(GHOST, 0);
+        Looks.SetSizeTo(100);
+        Repeat (5)
+        {
+            Looks.ChengeSizeBy(-6);
+            Looks.ChangeEffectBy(GHOST, 6);
+        }
+        Repeat (5)
+        {
+            Looks.ChengeSizeBy(-5);
+            Looks.ChangeEffectBy(GHOST, 14);
+        }
+    }
+    Else
+    {
+        Looks.Show();
+        Looks.SetEffectTo(GHOST, 0);
+        Looks.SetSizeTo(55);
+        Repeat (5)
+        {
+            Looks.ChengeSizeBy(11);
+            Looks.ChangeEffectBy(GHOST, 6);
+        }
+        Repeat (5)
+        {
+            Looks.ChengeSizeBy(6);
+            Looks.ChangeEffectBy(GHOST, 14);
+        }
+    }
+    Control.DeleteThisClone();
+}
+
+
+//----- Costumes ------------------------------------------------------------------------------------------------------
+
+10.svg
+11.svg
+20.svg
+21.svg
+30.svg
+31.svg
+40.svg
+41.svg
+42.svg
+50.svg
+51.svg
+60.svg
+61.svg
+70.svg
+71.svg
+80.png
+81.svg
+90.svg
+91.svg
+92.svg
+100.svg
+101.svg
+102.svg
+110.svg
+111.svg
+112.svg
+120.svg
+121.svg
+122.svg
+130.svg
+131.svg
+132.svg
+140.svg
+142.svg
+143.svg
+144.svg
+150.svg
+151.svg
+155.svg
+160.svg
+161.svg
+170.svg
+171.svg
+173.svg
+180.svg
+181.svg
+182.svg
+190.svg
+191.svg
+192.svg
+200.svg
+201.svg
+202.svg
+210.svg
+?A.svg
+A1.svg
+A2.svg
+A3.svg
+A4.svg
+AD.svg
+AF.svg
+AI.svg
+AR.svg
+AW.svg
+B.svg
+B1.svg
+B2.svg
+D.svg
+d.svg
+dark2.svg
+dark3.svg
+ec.svg
+f.svg
+H.svg
+L3.svg
+p.svg
+
+
+//----- Sounds --------------------------------------------------------------------------------------------------------
+
+pop.wav

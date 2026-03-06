@@ -1,0 +1,119 @@
+//----- Variables -----------------------------------------------------------------------------------------------------
+
+attacker = 0
+counter t = 0
+para'd = 0
+target = 0
+
+
+
+//----- Green flag events ---------------------------------------------------------------------------------------------
+
+WhenGreenFlagClicked()
+{
+    Motion.GoToXY(0, 0);
+    Looks.Hide();
+    message delay = 0;
+    Control.Wait(1);
+    Wait Until (title screen == 0);
+    Forever
+    {
+        Looks.Show();
+        Costume.GoToFrontBack(front);
+        Costume.MoveLayers(backward, 2);
+        If (story despite battle == 1)
+        {
+            Looks.SetEffectTo(GHOST, 0);
+            If (Not ((Battleover? == 1)))
+            {
+                If (message delay == -6.1)
+                {
+                    Looks.SwitchCostumeTo(costume2);
+                    Call caveshift;
+                }
+                Else
+                {
+                    Looks.SwitchCostumeTo(costume5);
+                    Call caveshift;
+                }
+                Costume.GoToFrontBack(back);
+            }
+        }
+        Else
+        {
+            Looks.ChangeEffectBy(GHOST, ((0.5 - Battleover?) * 555));
+        }
+        If (Battleover? == 1)
+        {
+            If (Variable.Length(A Message Log[1]) > 0)
+            {
+                If (message delay == -6.1)
+                {
+                    Looks.SwitchCostumeTo(costume4);
+                    Call caveshift;
+                }
+                Else
+                {
+                    Looks.SwitchCostumeTo(costume3);
+                    Call caveshift;
+                }
+                If (message delay > List.Length(A Message Log))
+                {
+                    message delay = 0;
+                    List.DeleteItem(A Message Log, 1);
+                }
+                message delay += 0.25;
+            }
+            Else
+            {
+                Control.Wait(0);
+                If (Variable.Length(A Message Log[1]) < 1)
+                {
+                    message delay = 0;
+                    List.DeleteAll(A Message Log);
+                    Looks.SwitchCostumeTo(costume1);
+                    Call caveshift;
+                }
+            }
+        }
+    }
+}
+
+
+//----- Broadcast received events -------------------------------------------------------------------------------------
+
+WhenBroadcastReceived(End)
+{
+    Looks.Hide();
+    Stop(other scripts in sprite);
+}
+
+
+//----- Custom blocks -------------------------------------------------------------------------------------------------
+
+Define caveshift (warp=false)
+{
+    If ((AREA == 2) And (Battleover? > 0))
+    {
+        Looks.NextCostume();
+        Looks.NextCostume();
+        Looks.NextCostume();
+    }
+}
+
+
+//----- Costumes ------------------------------------------------------------------------------------------------------
+
+costume1.png
+costume2.svg
+costume3.svg
+costume4.svg
+costume5.svg
+costume6.svg
+costume7.svg
+costume8.svg
+
+
+//----- Sounds --------------------------------------------------------------------------------------------------------
+
+Bling1.wav

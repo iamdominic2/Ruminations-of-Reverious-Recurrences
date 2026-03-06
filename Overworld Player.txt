@@ -1,0 +1,1157 @@
+//----- Variables -----------------------------------------------------------------------------------------------------
+
+attacker = 0
+CMOVINGH = 0
+counter t = 0
+F = 67
+para'd = 0
+STEP = 0
+sx = 0
+sy = 0
+target = 0
+
+
+
+//----- Green flag events ---------------------------------------------------------------------------------------------
+
+WhenGreenFlagClicked()
+{
+    MAP X = -1344;
+    MAP Y = 92;
+    STEP = 0;
+    loadb = 0;
+    Looks.Hide();
+    Sound.SetVolumeTo(100);
+    Motion.GoToXY(50, 0);
+    Looks.SetSizeTo(75);
+    Motion.SetRotationStyle(left-right);
+    Motion.PointInDirection(90);
+    List.DeleteAll(followx);
+    List.DeleteAll(followy);
+    List.DeleteAll(followd);
+    Control.Wait(1);
+    Call add_d!(17);
+    List.Add(ItemCounter, 0);
+    Wait Until (title screen == 0);
+    Looks.Show();
+    If (loadb == 1)
+    {
+        Call Load;
+    }
+    Else
+    {
+        Looks.SetSizeTo(100);
+        story despite battle = 0;
+        Call Story line add("(This seems too dreamy to be real life...") wait input("") end of section("");
+        Call Story line add("Is it the limitations of dreaming") wait input("") end of section("");
+        Call Story line add("or is the world, or my vision already damaged?") wait input("") end of section("");
+        Call Story line add("Who even am I?") wait input(1) end of section("");
+        Call Story line add("Am I just in a daze?") wait input("") end of section("");
+        Call Story line add("Am I hallucinating?") wait input("") end of section("");
+        Call Story line add("Why is the world so devoid of detail?") wait input("") end of section("");
+        Call Story line add("Or is it something else?") wait input(1) end of section("");
+        Call Story line add("I'm scared...") wait input("") end of section("");
+        Call Story line add("Yet I want to find out...") wait input("") end of section("");
+        Call Story line add("...Why...?)") wait input(1) end of section(1);
+        Control.Wait(1);
+        Sound.StopAllSounds();
+    }
+    Mspeed = 8.1;
+    Forever
+    {
+        Looks.Hide();
+        If (Battleover? == 1)
+        {
+            Looks.Show();
+            CMOVINGH = 0;
+            If Sensing.KeyPressed(x)
+            {
+            }
+            Looks.SetSizeTo(25);
+            If (((MAP X < -1000) And (MAP Y < -520)) And (AREA == 4))
+            {
+                If (Not (List.ContainsItem(flags, "darksp")))
+                {
+                    List.DeleteAll(A Message Log);
+                    Looks.SetSizeTo(100);
+                    Call Story line add("Dark Spirit: Do NOT step forth into this portal.") wait input("") end of section("");
+                    Call Story line add("Otherwise, you will simply be destroyed") wait input("") end of section("");
+                    Call Story line add("into nothingless, like a black hole.") wait input(1) end of section("");
+                    Call Story line add("Dark Spirit: Why am I doing this? It's") wait input("") end of section("");
+                    Call Story line add("simply because ending humans is my purpose.") wait input("") end of section("");
+                    Call Story line add("I am showing my rare mercy here.") wait input(1) end of section("");
+                    Call Story line add("Lyra: Thank God!") wait input(1) end of section("");
+                    Call Story line add("Dark Spirit: Then you rotten rascals shall") wait input("") end of section("");
+                    Call Story line add("interfere my peace no more.") wait input(1) end of section("");
+                    Call Story line add("Dark Spirit: Otherwise, as I have already said,") wait input("") end of section("");
+                    Call Story line add("I will...painlessly...get rid of you guys.  ") wait input(1) end of section("");
+                    Call Story line add("Dark Spirit: Firing you away from this beautiful") wait input("") end of section("");
+                    Call Story line add("place, into the ruins of putrid yet delicious") wait input("") end of section("");
+                    Call Story line add("top-notch-tasting corpses. None will survive.") wait input("") end of section("");
+                    Call Story line add("WAHAhahahaha!") wait input(1) end of section("");
+                    List.Add(flags, "darksp");
+                }
+            }
+            If ((MAP Y < -550) And (AREA == 4))
+            {
+                If (Not (List.ContainsItem(flags, "darkspi")))
+                {
+                    List.DeleteAll(A Message Log);
+                    Looks.SetSizeTo(100);
+                    Call Story line add("Dark Spirit: You know what, I'll spill the beans.") wait input("") end of section("");
+                    Call Story line add("Spilling your fate. Celeste, I have penetrated") wait input("") end of section("");
+                    Call Story line add("your head such that I keep you in this joyful") wait input("") end of section("");
+                    Call Story line add("nightmare forever.") wait input(1) end of section("");
+                    List.Add(flags, "darkspi");
+                    Call Story line add("(WHAT?)") wait input(1) end of section("");
+                    Call Story line add("Dark Spirit: Your eternal doom is my eternal joy.") wait input("") end of section("");
+                    Call Story line add("I'm impressed you poor, ruined soul had the") wait input("") end of section("");
+                    Call Story line add("endurance to keep doing the loop for so long.") wait input(1) end of section("");
+                    Call Story line add("Dark Spirit: Your fruitless efforts will not change") wait input("") end of section("");
+                    Call Story line add("anything in reality. It will all go to waste here.") wait input(1) end of section("");
+                    Call Story line add("Dark Spirit: And indeed will you continue to") wait input("") end of section("");
+                    Call Story line add("appreciate my gift to you, eternally.  Wahahahahaha") wait input("") end of section("");
+                    Call Story line add("hahahaha!") wait input(1) end of section("");
+                }
+            }
+            If Sensing.TouchingColour(#cb00dd)
+            {
+                Looks.SetSizeTo(100);
+                Sound.Play(Teleport2);
+                MAP X += Motion.XPosition();
+                MAP Y += Motion.YPosition();
+                Motion.SetX(0);
+                Motion.SetY(0);
+                Control.Wait(0.1);
+                Call FiddleOut;
+                MAP X = (-1 * MAP X);
+                Call add_d!(17);
+                If (Not (List.ContainsItem(flags, "zoom!")))
+                {
+                    List.DeleteAll(A Message Log);
+                    Call Story line add("(Wah! I suddenly ended up in another place!") wait input("") end of section("");
+                    Call Story line add("It's like I was temporarily unaware!)") wait input(1) end of section("");
+                    Call Story line add("Drayden: We go WEEEE!") wait input(1) end of section("");
+                    Call Story line add("Lyra: Yeah, let's do this, guys.") wait input("") end of section("");
+                    Call Story line add("It's certainly fun.") wait input(1) end of section("");
+                    Call Story line add("(Why else would I keep doing this activity?") wait input("") end of section("");
+                    Call Story line add("Just to torture my swiggling body?)") wait input(1) end of section("");
+                    Call Story line add("Lyra: It's probably God's way to allow for") wait input("") end of section("");
+                    Call Story line add("that evil being to be destroyed.") wait input(1) end of section("");
+                    Call Story line add("(That's certainly dark. Yeah, or it could be") wait input("") end of section("");
+                    Call Story line add("my mind wandering with my body. lol.)") wait input(1) end of section("");
+                    List.Add(flags, "zoom!");
+                }
+            }
+            Looks.SetSizeTo(100);
+            If (((MAP X > -50) And (AREA == 3)) And (Not (List.ContainsItem(flags, "area3forest"))))
+            {
+                List.DeleteAll(A Message Log);
+                Call Story line add("Lyra: What a peaceful stroll through") wait input("") end of section("");
+                Call Story line add("the forest, unbothered...") wait input(1) end of section("");
+                Call Story line add("Drayden: And it's one that believes in the") wait input("") end of section("");
+                Call Story line add("powers of the above! Of course, what's") wait input("") end of section("");
+                Call Story line add("up with them... It's an aeroplane") wait input("") end of section("");
+                Call Story line add("striking their head!!!") wait input(1) end of section("");
+                Call Story line add("(Certainly has a lot of kinetic energy.)") wait input(1) end of section("");
+                Call Story line add("Lyra: And what is that lil' shy lad") wait input("") end of section("");
+                Call Story line add("doin' here? Nothing specific to say?") wait input(1) end of section("");
+                Call Story line add("(...)") wait input(1) end of section("");
+                Call Story line add("Lyra: Maybe it's really of the thinker type.") wait input(1) end of section("");
+                Call Story line add("(Exactly, thinking of what actions to take.)") wait input(1) end of section("");
+                Call Story line add("Lyra: But perhaps it's done by a higher power,") wait input("") end of section("");
+                Call Story line add("who knows of much more than we do, and") wait input("") end of section("");
+                Call Story line add("is here to guide us to the ideal outcome.") wait input(1) end of section("");
+                Call Story line add("(It's you, what a geniuz!)") wait input(1) end of section("");
+                List.Add(flags, "area3forest");
+            }
+            If ((((MAP X > 667) And (MAP Y < 722)) And (AREA == 3)) And (Not (List.ContainsItem(flags, "a3fa"))))
+            {
+                Sound.Play(Teleport);
+                List.DeleteAll(A Message Log);
+                Call Story line add("Photonix: I received clear-cut instructions from") wait input("") end of section("");
+                Call Story line add("the Dark Spirit to give humans a hard time") wait input("") end of section("");
+                Call Story line add("by following pre-programmed instructions") wait input("") end of section("");
+                Call Story line add("by killing them.") wait input(1) end of section("");
+                Call Story line add("(An alien? Am I really dreaming? Can Lyra") wait input("") end of section("");
+                Call Story line add("tell my apart?)") wait input(1) end of section("");
+                Call Story line add("Lyra: No, not really, it's like a rumination") wait input("") end of section("");
+                Call Story line add("yet this thing could be a subordinate") wait input("") end of section("");
+                Call Story line add("of evil...") wait input(1) end of section("");
+                Call Story line add("(Is evil just a reverence of my imaginative") wait input("") end of section("");
+                Call Story line add("powers... Help...)") wait input(1) end of section("");
+                Call Story line add("Drayden: You're totally an alien to me,") wait input("") end of section("");
+                Call Story line add("so I'll hunt you down like Jeffery Epstein!!") wait input(1) end of section("");
+                Call Story line add("(Are celestial bodies like that even supposed to ") wait input("") end of section("");
+                Call Story line add("exist?)") wait input(1) end of section("");
+                Call Story line add("Lyra: In reality, I can't even tell this apart...") wait input("") end of section("");
+                Call Story line add("Wait, are we even in reality? Or a dark dream?") wait input(1) end of section("");
+                List.Add(flags, "a3fa");
+            }
+            If (((MAP X > 166) And (AREA == 2)) And (Not (List.ContainsItem(flags, "ravw"))))
+            {
+                Call Story line add("Drayden: I don't care that it's dark, keep MOVING!") wait input("") end of section("");
+                Call Story line add("Don't stop! I actually want to chicken out of") wait input("") end of section("");
+                Call Story line add("here ASAP!") wait input(1) end of section("");
+                Call Story line add("(Well, while he recognized it's dark, why is he") wait input("") end of section("");
+                Call Story line add("telling me to be rushed like a boar? What a wild") wait input("") end of section("");
+                Call Story line add("bear he is! It's not like monsters would") wait input("") end of section("");
+                Call Story line add("suddenly attack us, ") wait input(1) end of section("");
+                Call Story line add("when we are standing still!!") wait input("") end of section("");
+                Call Story line add("My Drayden always so eager to act,") wait input("") end of section("");
+                Call Story line add("yet he can't tell between bravery and") wait input("") end of section("");
+                Call Story line add("daredevilry, even though he's not evil.)") wait input(1) end of section("");
+                Call Story line add("Drayden: A man doesn't care if he trips!") wait input("") end of section("");
+                Call Story line add("Literally, go! It's not that bad to be in the dark!") wait input(1) end of section("");
+                Call Story line add("(But I'm not him... I need to be careful") wait input("") end of section("");
+                Call Story line add("of the worse case scenario of tripping up,") wait input("") end of section("");
+                Call Story line add("the premeditation of evils that I ain't sure") wait input("") end of section("");
+                Call Story line add("that I can deal with myself.)") wait input(1) end of section("");
+                List.Add(flags, "ravw");
+            }
+            If (((MAP X > 812) And (AREA == 2)) And (Not (List.ContainsItem(flags, "birdh"))))
+            {
+                Sound.Play(Scream1);
+                Call Story line add("Lyra: Aowww! Power of the sky, save me!") wait input("") end of section("");
+                Call Story line add("Aowah!") wait input(1) end of section("");
+                Call Story line add("Drayden: This bir' got some nerves! Staying") wait input("") end of section("");
+                Call Story line add("in a place without the sky in view") wait input("") end of section("");
+                Call Story line add("AND where viscious monsters are all") wait input("") end of section("");
+                Call Story line add("around, now she's the TRUE birdbrain!!") wait input(1) end of section("");
+                Call Story line add("(Yes, I wish I could get as much freedom") wait input("") end of section("");
+                Call Story line add("as a bird, I don't necessarily want to deal") wait input("") end of section("");
+                Call Story line add("with alturism all the time. I had to save") wait input("") end of section("");
+                Call Story line add("a man today, but now one more?)") wait input(1) end of section("");
+                Sound.Play(Scream1);
+                Call Story line add("Lyra: Aowww! Wah! Wounds!") wait input(1) end of section("");
+                Call Story line add("Drayden: Birds aren't supposed to cry!") wait input("") end of section("");
+                Call Story line add("If men, a smart species, aren't supposed") wait input("") end of section("");
+                Call Story line add("to cry, then neither should a coward like you") wait input("") end of section("");
+                Call Story line add("do so any more!") wait input(1) end of section("");
+                Call Story line add("(Wait, he might be taking it too far.") wait input("") end of section("");
+                Call Story line add("I'll handle this like a stoic, calmly,") wait input("") end of section("");
+                Call Story line add("after all, it does sound like no joke,") wait input("") end of section("");
+                Call Story line add("indeed, help is needed.") wait input(1) end of section("");
+                Call Story line add("Drayden is too numbskulled to be alone") wait input("") end of section("");
+                Call Story line add("anyways, so maybe he's just yapping") wait input("") end of section("");
+                Call Story line add("stuff out to avoid feeling the loneliness") wait input("") end of section("");
+                Call Story line add("epidemic?)") wait input(1) end of section("");
+                List.Add(flags, "birdh");
+            }
+            If (((MAP X > -450) And (AREA == 2)) And (Not (List.ContainsItem(flags, "ravz"))))
+            {
+                Call Story line add("(It's the darkness. It's the uncertainity.") wait input("") end of section("");
+                Call Story line add("It's very real. Yet I can still see a bit") wait input("") end of section("");
+                Call Story line add("without a torch. Is it divine power?") wait input(1) end of section("");
+                Call Story line add("Or is it robotic infulence, or a brainwashing?") wait input("") end of section("");
+                Call Story line add("Or is it that someone knows that you would") wait input("") end of section("");
+                Call Story line add("get angry if you were blind?)") wait input(1) end of section("");
+                Call Story line add("Drayden: Come on, go! This ain't rocket surgery!") wait input("") end of section("");
+                Call Story line add("It's not like that it's a black hole or anything!") wait input("") end of section("");
+                Call Story line add("Unless you're BLIND!") wait input(1) end of section("");
+                Call Story line add("(Is it the shadows of all the problems I faced in") wait input("") end of section("");
+                Call Story line add("the past? Even if it's not a black hole, there") wait input("") end of section("");
+                Call Story line add("would certainly be hostile monsters that are") wait input(1) end of section("");
+                Call Story line add("tougher than the previous places!") wait input("") end of section("");
+                Call Story line add("My bloke's just a doommer inhaling copium,") wait input("") end of section("");
+                Call Story line add("a feather-head like him would certainly be a") wait input("") end of section("");
+                Call Story line add("prodigiously painful problem!!)") wait input(1) end of section("");
+                List.Add(flags, "ravz");
+            }
+            If (((MAP X > -300) And (AREA == 1)) And (Not (List.ContainsItem(flags, "1w"))))
+            {
+                Call Story line add("(Why am I wobbling around?") wait input("") end of section("");
+                Call Story line add("Shaking as I move...?") wait input("") end of section("");
+                Call Story line add("Is this just an imagination,") wait input("") end of section("");
+                Call Story line add("or is it that life is imperfect?") wait input(1) end of section("");
+                Call Story line add("Nevertheless, I'm fine with imperfections.") wait input("") end of section("");
+                Call Story line add("Nobody except a God, if one exists, is that way.)") wait input(1) end of section(1);
+                List.Add(flags, "1w");
+            }
+            If (((MAP X > 718) And (AREA == 1)) And (Not (List.ContainsItem(flags, "rar"))))
+            {
+                List.DeleteAll(A Message Log);
+                Call Story line add("(Things are changing colors, I'm not even kidding...") wait input("") end of section("");
+                Call Story line add("It's a slog to comprehend what is to") wait input("") end of section("");
+                Call Story line add("be comprehended, for it is incomprehensible...") wait input(1) end of section(1);
+                List.Add(flags, "rar");
+            }
+            If (((MAP X > 1055) And (AREA == 1)) And (Not (List.ContainsItem(flags, "rww"))))
+            {
+                Sound.Play(Scream2);
+                Call Story line add("Drayden: ARGH!") wait input("") end of section("");
+                Call Story line add("URAAF! OW!") wait input(1) end of section("");
+                Call Story line add("(Who is this? Am I hearing voices?") wait input("") end of section("");
+                Call Story line add("I've been lonely for a while, so is it my brain") wait input("") end of section("");
+                Call Story line add("playing tricks on me? Hearing false signals?") wait input(1) end of section("");
+                Call Story line add("Should I help out? Or should I get more ") wait input("") end of section("");
+                Call Story line add("experienced with fighting? There's definitely") wait input("") end of section("");
+                Call Story line add("trouble, and I surely don't want double trouble.)") wait input(1) end of section(1);
+                List.Add(flags, "rww");
+            }
+            If ((Sensing.KeyPressed(a) Or Sensing.KeyPressed(left arrow)) Or (((Sensing.MouseX() < -30) And Sensing.MouseDown()) And ((Sensing.MouseX() > -167) Or (Sensing.MouseY() < 145))))
+            {
+                Motion.ChangeXBy((0 - Mspeed));
+                Motion.PointInDirection(-90);
+                CMOVINGH = 1;
+                STEP += 1;
+                If Sensing.TouchingObject(deco)
+                {
+                    STEP += 2;
+                }
+            }
+            If ((Sensing.KeyPressed(d) Or Sensing.KeyPressed(right arrow)) Or ((Sensing.MouseX() > 30) And Sensing.MouseDown()))
+            {
+                Motion.PointInDirection(90);
+                Motion.ChangeXBy(Mspeed);
+                CMOVINGH = 1;
+                STEP += 1;
+                If Sensing.TouchingObject(deco)
+                {
+                    STEP += 2;
+                }
+            }
+            If ((Sensing.KeyPressed(w) Or Sensing.KeyPressed(up arrow)) Or (((Sensing.MouseY() > 30) And ((Sensing.MouseY() < 124) Or (Sensing.MouseX() > -167))) And Sensing.MouseDown()))
+            {
+                Motion.ChangeYBy(Mspeed);
+                STEP += 1;
+                CMOVINGH = 1;
+                If Sensing.TouchingObject(deco)
+                {
+                    STEP += 2;
+                }
+            }
+            If ((Sensing.KeyPressed(s) Or Sensing.KeyPressed(down arrow)) Or ((Sensing.MouseY() < -30) And Sensing.MouseDown()))
+            {
+                Motion.ChangeYBy((0 - Mspeed));
+                STEP += 1;
+                CMOVINGH = 1;
+                If Sensing.TouchingObject(deco)
+                {
+                    STEP += 2;
+                }
+            }
+            Call FiddleOut;
+            If (CMOVINGH == 1)
+            {
+                Looks.NextCostume();
+                If (Costume.GetNumberName(number) == 10)
+                {
+                    Looks.SwitchCostumeTo(a2);
+                }
+                If (Not ((F == -1)))
+                {
+                    F = -2;
+                }
+                If (sqrt(((Motion.XPosition() * Motion.XPosition()) + (Motion.YPosition() * Motion.YPosition()))) > 33)
+                {
+                    If (STEP > 583)
+                    {
+                        Event.Broadcast("ee");
+                        Sound.Play(laser3);
+                        Control.Wait(0.4);
+                        Event.Broadcast("ENC");
+                        STEP = Operator.Random(-233 , 100);
+                        Looks.Hide();
+                        Control.Wait(2);
+                        If ((Enemy No.2 > 0) And ((Not (List.ContainsItem(flags, "twoe"))) And (AREA == 1)))
+                        {
+                            List.DeleteAll(A Message Log);
+                            Call Story line add("(Something feels different.") wait input("") end of section("");
+                            Call Story line add("Maybe challenges need to catch on with my ability.") wait input("") end of section("");
+                            Call Story line add("Or maybe it's what humans naturally do in boredom.") wait input(1) end of section("");
+                            Call Story line add("Still, can't ruminate, gotta defeat those guys.)") wait input(1) end of section(1);
+                            List.Add(flags, "twoe");
+                        }
+                        If ((Enemy == 1) And (Not (List.ContainsItem(flags, "en1"))))
+                        {
+                            List.DeleteAll(A Message Log);
+                            Call Story line add("(I'm even more scared...") wait input("") end of section("");
+                            Call Story line add("What is that gooey substance...") wait input("") end of section("");
+                            Call Story line add("Does that thing even exist as an actual") wait input("") end of section("");
+                            Call Story line add("alive creature in reality?)") wait input(1) end of section(1);
+                            List.Add(flags, "en1");
+                        }
+                        If (((Enemy == 2) Or (Enemy No.2 == 2)) And (Not (List.ContainsItem(flags, "en2"))))
+                        {
+                            List.DeleteAll(A Message Log);
+                            Call Story line add("(It'll bee a real stinger if I have to exist ") wait input("") end of section("");
+                            Call Story line add("like this in a fog much longer.)") wait input(1) end of section("");
+                            List.Add(flags, "en2");
+                        }
+                        If (((Enemy == 3) Or (Enemy No.2 == 3)) And (Not (List.ContainsItem(flags, "en3"))))
+                        {
+                            List.DeleteAll(A Message Log);
+                            Call Story line add("(It's indeed quite a killer...") wait input("") end of section("");
+                            Call Story line add("that I don't know whether my true self is axed...") wait input(0) end of section("");
+                            Call Story line add("... what even am I!?)") wait input(1) end of section("");
+                            List.Add(flags, "en3");
+                        }
+                        If (((Enemy == 5) Or (Enemy No.2 == 5)) And (Not (List.ContainsItem(flags, "en5"))))
+                        {
+                            List.DeleteAll(A Message Log);
+                            Call Story line add("Drayden: Spikes all over its body? Kill it, I don't") wait input("") end of section("");
+                            Call Story line add("care!") wait input("") end of section("");
+                            Call Story line add("(What a reckless boy, I'd probably just,") wait input("") end of section("");
+                            Call Story line add("poison it with magical might. Ha, my boi Drayden!)") wait input(1) end of section("");
+                            List.Add(flags, "en5");
+                        }
+                        If (((Enemy == 6) Or (Enemy No.2 == 6)) And (Not (List.ContainsItem(flags, "en6"))))
+                        {
+                            List.DeleteAll(A Message Log);
+                            Call Story line add("Drayden: You mummy! You're about to be") wait input("") end of section("");
+                            Call Story line add("stoned for a second time and die a painful death!") wait input(1) end of section("");
+                            Call Story line add("(But can the dead really feel any pain? Or") wait input("") end of section("");
+                            Call Story line add("is Drayden doing this for charisma?") wait input("") end of section("");
+                            Call Story line add("And isn't the dead suddenly acting again") wait input("") end of section("");
+                            Call Story line add("kinda unrealistic?)") wait input(1) end of section("");
+                            List.Add(flags, "en6");
+                        }
+                        If (((Enemy == 7) Or (Enemy No.2 == 7)) And (Not (List.ContainsItem(flags, "en7"))))
+                        {
+                            List.DeleteAll(A Message Log);
+                            Call Story line add("Drayden: I want to scorch you such that") wait input("") end of section("");
+                            Call Story line add("you Inferno shall burn in hell and stop") wait input("") end of section("");
+                            Call Story line add("scarying me and Celeste again!") wait input(1) end of section("");
+                            Call Story line add("(But if you add another fire to a fire,") wait input("") end of section("");
+                            Call Story line add("doesn't it make it worse? Or can you") wait input("") end of section("");
+                            Call Story line add("really do that, because of sheer determination!?)") wait input(1) end of section("");
+                            List.Add(flags, "en7");
+                        }
+                        If (((Enemy == 8) Or (Enemy No.2 == 8)) And (Not (List.ContainsItem(flags, "en8"))))
+                        {
+                            List.DeleteAll(A Message Log);
+                            Call Story line add("Drayden: I'm going to be the vampire of") wait input("") end of section("");
+                            Call Story line add("vampires, you bat, prepare to get vamp'd!") wait input("") end of section("");
+                            Call Story line add("I'll tear your body apart and cook your meat!") wait input(1) end of section("");
+                            Call Story line add("(What type of animal-eater is my boi Drayden?") wait input("") end of section("");
+                            Call Story line add("Is he okay? He must be quite a lover of meat!)") wait input("") end of section("");
+                            Call Story line add("Then he really should get a meat-lover's pizza!)") wait input(1) end of section("");
+                            List.Add(flags, "en8");
+                        }
+                        If (((Enemy == 10) Or (Enemy No.2 == 10)) And (Not (List.ContainsItem(flags, "en10"))))
+                        {
+                            List.DeleteAll(A Message Log);
+                            Call Story line add("(Eternally melanchony... Eternally...)") wait input(1) end of section("");
+                            Call Story line add("Drayden: Who the hell are you? Getting made to") wait input("") end of section("");
+                            Call Story line add("be a crybaby in front of that witch?") wait input(1) end of section("");
+                            Call Story line add("Lyra: But, well, God always favors good") wait input("") end of section("");
+                            Call Story line add("willed humans over demonic monsters?") wait input(1) end of section("");
+                            Call Story line add("(But philosophically, I don't actually know") wait input("") end of section("");
+                            Call Story line add("what is good, and what is bad. Is it") wait input("") end of section("");
+                            Call Story line add("all a subjective state?)") wait input(1) end of section("");
+                            Call Story line add("Drayden: WHICH WITCH WOULD MAKE") wait input("") end of section("");
+                            Call Story line add("YOU BE LIKE THAT? ONE THAT MANIPULATES YOU!") wait input(1) end of section("");
+                            List.Add(flags, "en10");
+                        }
+                        If (((Enemy == 11) Or (Enemy No.2 == 11)) And (Not (List.ContainsItem(flags, "en11"))))
+                        {
+                            List.DeleteAll(A Message Log);
+                            List.Add(flags, "en11");
+                            Call Story line add("Lyra: What is such a cat-a-straw-phee?") wait input("") end of section("");
+                            Call Story line add("A living beehive? What has God done to us..") wait input(1) end of section("");
+                            Call Story line add("Drayden: You shall burn in hell! All of it!") wait input("") end of section("");
+                            Call Story line add("Wee! In a blazing fire! Bee-A-Corpse!") wait input(1) end of section("");
+                            Call Story line add("Lyra: !?") wait input(1) end of section("");
+                            Call Story line add("(...mhm.)") wait input(1) end of section("");
+                            Call Story line add("Drayden: Ain't I the all-powerful?") wait input("") end of section("");
+                            Call Story line add("I can scorch such gruesome meddling") wait input("") end of section("");
+                            Call Story line add("creatures to death!!") wait input(1) end of section("");
+                            Call Story line add("(He's clearly playing with fire here.)") wait input(1) end of section("");
+                        }
+                        If (((Enemy == 12) Or (Enemy No.2 == 12)) And (Not (List.ContainsItem(flags, "en12"))))
+                        {
+                            List.DeleteAll(A Message Log);
+                            List.Add(flags, "en12");
+                            Call Story line add("(Ehh, a cyclops egg? Is it alive? Or is it") wait input("") end of section("");
+                            Call Story line add("waiting to be born?)") wait input(1) end of section("");
+                            Call Story line add("Drayden: OF COURSE IT'S ALIVE, why else ") wait input("") end of section("");
+                            Call Story line add("could it be a monster?") wait input(1) end of section("");
+                            Call Story line add("(Fair point.)") wait input(1) end of section("");
+                            Call Story line add("Lyra: An egg is the source of all living things,") wait input("") end of section("");
+                            Call Story line add("but unfortunately it also includes beings from") wait input("") end of section("");
+                            Call Story line add("the depths of the dark world.") wait input(1) end of section("");
+                            Call Story line add("Drayden: What came first, the monster or the egg?") wait input(1) end of section("");
+                            Call Story line add("Lyra: Neither, probably God came first.") wait input(1) end of section("");
+                            Call Story line add("Drayden: You didn't answer me! I was asking") wait input("") end of section("");
+                            Call Story line add("you to pick one from those two!!") wait input(1) end of section("");
+                            Call Story line add("Lyra: The egg, but I'll probably shatter that one") wait input("") end of section("");
+                            Call Story line add("right about now.") wait input(1) end of section("");
+                            Call Story line add("(Wait, if that thing just spawned in and is") wait input("") end of section("");
+                            Call Story line add("both a monster and an egg, isn't the answer") wait input("") end of section("");
+                            Call Story line add("BOTH?...)") wait input(1) end of section("");
+                        }
+                        If (((Enemy == 13) Or (Enemy No.2 == 13)) And (Not (List.ContainsItem(flags, "en13"))))
+                        {
+                            List.DeleteAll(A Message Log);
+                            List.Add(flags, "en13");
+                            Call Story line add("Drayden: RUFF! I wanted to scare this weirdog.") wait input(1) end of section("");
+                            Call Story line add("Lyra: Rrawr, unfortunately your alignment is of the") wait input("") end of section("");
+                            Call Story line add("dark kind, so you shall be expelled from our sight.") wait input(1) end of section("");
+                            Call Story line add("(Wait, what's wrong with it... Huh? ") wait input("") end of section("");
+                            Call Story line add("The herustics of living? This creature wants") wait input("") end of section("");
+                            Call Story line add("to bite us? Indeed, a fair point.)") wait input(1) end of section("");
+                            Call Story line add("Drayden: ROARRRRRR! I'll give that black-furred") wait input("") end of section("");
+                            Call Story line add("evil wolf-wolf-dog the punishment it deserves.") wait input(1) end of section("");
+                        }
+                        If (((Enemy == 15) Or (Enemy No.2 == 15)) And (Not (List.ContainsItem(flags, "en15"))))
+                        {
+                            List.DeleteAll(A Message Log);
+                            List.Add(flags, "en15");
+                            Call Story line add("Lyra: Oh noo! A devil from the underworld!") wait input("") end of section("");
+                            Call Story line add("Be careful of its thorns!") wait input(1) end of section("");
+                            Call Story line add("Drayden: But I'll lash right back!!") wait input("") end of section("");
+                            Call Story line add("Be sent to hell again, right away!") wait input(1) end of section("");
+                            Call Story line add("(Yeah, he could be used to those thorns") wait input("") end of section("");
+                            Call Story line add("..or not?.)") wait input(1) end of section("");
+                            Call Story line add("Lyra: May God protect you from those thorns...") wait input(1) end of section("");
+                            Call Story line add("(And Drayden. don't eat them for God's sake...)") wait input(1) end of section("");
+                        }
+                        If (((Enemy == 16) Or (Enemy No.2 == 16)) And (Not (List.ContainsItem(flags, "en16"))))
+                        {
+                            List.DeleteAll(A Message Log);
+                            List.Add(flags, "en16");
+                            Call Story line add("Lyra: A poisonous insect. A sticky bane.") wait input(1) end of section("");
+                            Call Story line add("Drayden: Yum, wait, no! I'll throw that thing in") wait input("") end of section("");
+                            Call Story line add("hell!") wait input(1) end of section("");
+                            Call Story line add("(Yes, I indeed think such insects are toxic,") wait input("") end of section("");
+                            Call Story line add("in fact, even normal insects are annoying.)") wait input(1) end of section("");
+                            Call Story line add("Lyra: We'll send that stinker to where it belongs.") wait input(1) end of section("");
+                            Call Story line add("Drayden: To the underworld? Isn't that immoral?") wait input("") end of section("");
+                            Call Story line add("Or not?") wait input(1) end of section("");
+                            Call Story line add("Lyra: Well we'll say it's fine when dealing with") wait input("") end of section("");
+                            Call Story line add("evil creatures...") wait input("") end of section("");
+                            Call Story line add("Or is it just naturally protecting its own") wait input("") end of section("");
+                            Call Story line add("territory?") wait input(1) end of section("");
+                        }
+                        If (((Enemy == 17) Or (Enemy No.2 == 17)) And (Not (List.ContainsItem(flags, "ensevent"))))
+                        {
+                            List.DeleteAll(A Message Log);
+                            List.Add(flags, "ensevent");
+                            Call Story line add("Lyra: Now we have robots... Robots invading us?") wait input("") end of section("");
+                            Call Story line add("What has God's realm came to?") wait input(1) end of section("");
+                            Call Story line add("Drayden: Then I will let this one totally rot!") wait input("") end of section("");
+                            Call Story line add("(Hehe, because it's not concious, even better!!") wait input("") end of section("");
+                            Call Story line add("Or... is it?)") wait input(1) end of section("");
+                            Call Story line add("Drayden: Yeah, it should totally burn in hell!") wait input("") end of section("");
+                            Call Story line add("Add some oil - I mean remove its oil!") wait input(1) end of section("");
+                        }
+                        If (((Enemy == 19) Or (Enemy No.2 == 19)) And (Not (List.ContainsItem(flags, "en19"))))
+                        {
+                            List.DeleteAll(A Message Log);
+                            List.Add(flags, "en19");
+                            Call Story line add("Drayden: A statue that wards stone? Then") wait input("") end of section("");
+                            Call Story line add("how would it be real that it itself is made") wait input("") end of section("");
+                            Call Story line add("of stone?") wait input(1) end of section("");
+                            Call Story line add("(Well, maybe we're actually imagining things here.") wait input("") end of section("");
+                            Call Story line add("Wait, that would be terrifying... What would it") wait input("") end of section("");
+                            Call Story line add("actually mean?)") wait input(1) end of section("");
+                            Call Story line add("Lyra: Magical abilities destroy stone easily.") wait input("") end of section("");
+                            Call Story line add("Plus, statues are slow as snails... Wait,") wait input("") end of section("");
+                            Call Story line add("the fact that it moves is no ordinary influence!") wait input(1) end of section("");
+                        }
+                        If (((Enemy == 18) Or (Enemy No.2 == 18)) And (Not (List.ContainsItem(flags, "en18"))))
+                        {
+                            List.DeleteAll(A Message Log);
+                            List.Add(flags, "en18");
+                            Call Story line add("Drayden: Fuming with rage... To murder") wait input("") end of section("");
+                            Call Story line add("the Fuming Viridflame... to hell!") wait input(1) end of section("");
+                            Call Story line add("(Is he going to fight fire with fire again?)") wait input(1) end of section("");
+                            Call Story line add("Lyra: That monster's hot, perhaps my cold") wait input("") end of section("");
+                            Call Story line add("humor helped out? Probably not.") wait input("") end of section("");
+                            Call Story line add("Whatever, have your vains somehow stop") wait input("") end of section("");
+                            Call Story line add("functioning!!!") wait input(1) end of section("");
+                            Call Story line add("(N-ice 1!!!)") wait input(1) end of section("");
+                        }
+                        Wait Until (Battleover? == 1);
+                        If ((Character exp[1] == 3) And ((Not (List.ContainsItem(flags, "d11"))) And (AREA == 1)))
+                        {
+                            List.Add(flags, "d11");
+                            Looks.Show();
+                            Call Story line add("(But I suddenly feels ready again, and my") wait input("") end of section("");
+                            Call Story line add("wounds healed...") wait input("") end of section("");
+                            Call Story line add("I wonder whether I am dreaming...") wait input("") end of section("");
+                            Call Story line add("or not...)") wait input(1) end of section(1);
+                        }
+                        If ((Character exp[1] == 6) And ((Not (List.ContainsItem(flags, "d13"))) And (AREA == 1)))
+                        {
+                            List.Add(flags, "d13");
+                            Looks.Show();
+                            Call Story line add("(And I keep finding slimes...") wait input("") end of section("");
+                            Call Story line add("As if I am in an infinite loop of dreams...") wait input("") end of section("");
+                            Call Story line add("... Oh my brain daze! ") wait input("") end of section("");
+                            Call Story line add("... It's kinda making me shake unstably...)") wait input(1) end of section(1);
+                        }
+                        If (((Character exp[1] > 21) And (Not (List.ContainsItem(flags, "d33")))) And (AREA == 1))
+                        {
+                            List.Add(flags, "d33");
+                            Looks.Show();
+                            Call Story line add("(It somehow seems to get easier over time,") wait input("") end of section("");
+                            Call Story line add("is it a zen state, or am I just getting experienced?") wait input("") end of section("");
+                            Call Story line add("I don't really have anything else to think") wait input("") end of section("");
+                            Call Story line add("or say...)") wait input(1) end of section(1);
+                        }
+                    }
+                    Else
+                    {
+                    }
+                }
+            }
+            Else
+            {
+                Looks.SwitchCostumeTo(a);
+            }
+            If ((MAP X > 1200) And ((MAP Y < -193) Or (AREA == 3)))
+            {
+                List.ReplaceItem(Character HP, 2, 100);
+                If (AREA == 2)
+                {
+                    List.ReplaceItem(Character HP, 3, 100);
+                }
+                Event.Broadcast("ee");
+                Enemy = 4;
+                Event.Broadcast("BENC");
+                Looks.Hide();
+                Control.Wait(3);
+                If (((Enemy == 4) Or (Enemy No.2 == 4)) And (Not (List.ContainsItem(flags, "en4"))))
+                {
+                    List.DeleteAll(A Message Log);
+                    Call Story line add("Drayden: Help, the king of slimes held") wait input("") end of section("");
+                    Call Story line add("my body tighly in hostage!") wait input(1) end of section("");
+                    Call Story line add("(What is this cycle? Of the problems") wait input("") end of section("");
+                    Call Story line add("of aggresive monsters being thrown in") wait input("") end of section("");
+                    Call Story line add("my way? I've never seen them before!!)") wait input(1) end of section("");
+                    Call Story line add("Drayden: Stop thinking, Celeste, just get rid of") wait input("") end of section("");
+                    Call Story line add("this sticky stinker of a situation!") wait input(1) end of section("");
+                    Call Story line add("(If I stop thinking, brain activity") wait input("") end of section("");
+                    Call Story line add("will seize and I will die,") wait input("") end of section("");
+                    Call Story line add("what is this big baddie buff bozo boy?)") wait input(1) end of section("");
+                    Call Story line add("Drayden: Like, are you so morally malnourished") wait input("") end of section("");
+                    Call Story line add("you'd let me sit in this vile pea-green no-good goo?") wait input("") end of section("");
+                    Call Story line add("I don't care what you do, but do something! Hurry!") wait input(1) end of section(1);
+                    List.Add(flags, "en4");
+                }
+                If (((Enemy == 9) Or (Enemy No.2 == 9)) And (Not (List.ContainsItem(flags, "en9"))))
+                {
+                    List.DeleteAll(A Message Log);
+                    Sound.Play(Scream1);
+                    Call Story line add("Lyra: HELP, why can such a scorpion trap me") wait input("") end of section("");
+                    Call Story line add("inside this gloomy area? Argh! I'm so weak ") wait input("") end of section("");
+                    Call Story line add("physically...") wait input(1) end of section("");
+                    Call Story line add("(Because the scorpion clearly was hungry") wait input("") end of section("");
+                    Call Story line add("and wanted some food for its meal.)") wait input(1) end of section("");
+                    Call Story line add("Drayden: You really should stop being one") wait input("") end of section("");
+                    Call Story line add("of those tiktoky girls then, especially since") wait input("") end of section("");
+                    Call Story line add("there's no audience to entertain to begin with!") wait input(1) end of section("");
+                    Call Story line add("Lyra: But I thought the holy powers of") wait input("") end of section("");
+                    Call Story line add("the above could shine light on my") wait input("") end of section("");
+                    Call Story line add("path... I guess not... I'm still so weak...") wait input(1) end of section("");
+                    Call Story line add("(That's natural of a basically wood stick-y") wait input("") end of section("");
+                    Call Story line add("girl who stumbled inside here accidentally.") wait input("") end of section("");
+                    Call Story line add("She should've known what a cave is, but can't") wait input("") end of section("");
+                    Call Story line add("change the past.)") wait input(1) end of section("");
+                    Call Story line add("Drayden: There's nothing of significance here") wait input("") end of section("");
+                    Call Story line add("for a bird like you to stumble upon!") wait input("") end of section("");
+                    Call Story line add("Falling flat and unable to ascend high") wait input("") end of section("");
+                    Call Story line add("in life's potential!!") wait input(1) end of section("");
+                    Call Story line add("(I guess it's turning into a toxic") wait input("") end of section("");
+                    Call Story line add("relationship, huh? How Drayden talks to women...)") wait input(1) end of section("");
+                    Sound.Play(Scream1);
+                    Call Story line add("Lyra: Exactly, so we got to end the causer") wait input("") end of section("");
+                    Call Story line add("before it destroys my health and wellbeing!") wait input("") end of section("");
+                    Call Story line add("And Thank God that I can stand up for") wait input("") end of section("");
+                    Call Story line add("myself properly now!") wait input(1) end of section("");
+                    List.Add(flags, "en9");
+                }
+                If (((Enemy == 14) Or (Enemy No.2 == 14)) And (Not (List.ContainsItem(flags, "en14"))))
+                {
+                    List.DeleteAll(A Message Log);
+                    Call Story line add("Photonix: You foreign species, be removed") wait input("") end of section("");
+                    Call Story line add("from my world.") wait input(1) end of section("");
+                    Call Story line add("Lyra: But what have we done?") wait input(1) end of section("");
+                    Call Story line add("Photonix: You naughty figures have infiltrated") wait input("") end of section("");
+                    Call Story line add("our lovely collection of items.") wait input(1) end of section("");
+                    Call Story line add("Photonix: Thus, I will light-saber you all") wait input("") end of section("");
+                    Call Story line add("and savour your flesh! Pretty yum for me, hargh!") wait input(1) end of section("");
+                    Call Story line add("Drayden: Everyone here is hungry, wait something is") wait input("") end of section("");
+                    Call Story line add("rumbling. Not my belly, but my desire to eat") wait input("") end of section("");
+                    Call Story line add("YOUR foreign flesh instead!") wait input(1) end of section("");
+                    Call Story line add("(Let's get Drayden an alien-lover's pizza!)") wait input(1) end of section("");
+                    Call Story line add("Photonix: SUCH FOOLISH IS NOT ACCEPTABLE.") wait input("") end of section("");
+                    Call Story line add("PREPARE FOR ALL YOUR EXECUTIONS.") wait input("") end of section("");
+                    Call Story line add("BEGONE, MAD-LAD-GOONS.") wait input(1) end of section("");
+                    List.Add(flags, "en14");
+                }
+                If (((Enemy == 21) Or (Enemy No.2 == 21)) And (Not (List.ContainsItem(flags, "ennnn"))))
+                {
+                    List.DeleteAll(A Message Log);
+                    Call Story line add("Dark Spirit: So you have finally came.") wait input("") end of section("");
+                    Call Story line add("Had the irrational will to step forth in my") wait input("") end of section("");
+                    Call Story line add("portal. Too bad for you, it was a portal to hell!") wait input(1) end of section("");
+                    Call Story line add("Lyra: Whhat?") wait input(1) end of section("");
+                    Call Story line add("Dark Spirit: So all your INTESTINES will be in") wait input("") end of section("");
+                    Call Story line add("vain, and Lyra, your belief in God will ") wait input("") end of section("");
+                    Call Story line add("be rendered all meaningless in an instant.") wait input(1) end of section("");
+                    List.Add(flags, "ennnn");
+                    Call Story line add("Dark Spirit: And you, yes, you, Celeste,") wait input("") end of section("");
+                    Call Story line add("I am the ruler of this world. Not you, but me.") wait input("") end of section("");
+                    Call Story line add("As long as I exist, you will remain shrouded") wait input("") end of section("");
+                    Call Story line add("in my prison! Wahaha...") wait input(1) end of section("");
+                    Call Story line add("Drayden: Then I gotta kill you off!") wait input(1) end of section("");
+                    Call Story line add("(Wow, finally, my boi Drayden.)") wait input(1) end of section("");
+                    Call Story line add("Dark Spirit: But nothing will work against") wait input("") end of section("");
+                    Call Story line add("me. So suffer and worry. To make") wait input("") end of section("");
+                    Call Story line add("you trio suffer is my meaning. Wahahaha.") wait input(1) end of section("");
+                    Call Story line add("Drayden: Even more motivation to destroy") wait input("") end of section("");
+                    Call Story line add("you! I won't let that slide like pancakes!") wait input(1) end of section("");
+                    Call Story line add("Lyra: My belief in God will be so strong it") wait input("") end of section("");
+                    Call Story line add("would shatter your dark soul!") wait input(1) end of section("");
+                }
+                Wait Until (Battleover? == 1);
+                If (Enemy == 21)
+                {
+                    Enemy = 20;
+                    Event.Broadcast("BENC");
+                    Looks.Hide();
+                    Control.Wait(3);
+                }
+                Else
+                {
+                    AREA += 1;
+                    MAP X = -1344;
+                    MAP Y = 92;
+                    STEP = 100;
+                    Sound.StopAllSounds();
+                    If (((Enemy == 4) Or (Enemy No.2 == 4)) And (Not (List.ContainsItem(flags, "eend4"))))
+                    {
+                        List.DeleteAll(A Message Log);
+                        Looks.Show();
+                        Call Story line add("Drayden: Phew, you really are the good king") wait input("") end of section("");
+                        Call Story line add("here! A king shouldn't be posessed by evil,") wait input("") end of section("");
+                        Call Story line add("restraining the freedom of mesomorphic men") wait input("") end of section("");
+                        Call Story line add("like me menacingly!") wait input(1) end of section("");
+                        Call Story line add("(Are there really kings? As there are high-status ") wait input("") end of section("");
+                        Call Story line add("monsters, are there also men who are kings at ") wait input("") end of section("");
+                        Call Story line add("telling apart illusions and truth?") wait input("") end of section("");
+                        Call Story line add("Or are they depraved?)") wait input(1) end of section("");
+                        Call Story line add("Drayden: I'll buff hard building my muscular") wait input("") end of section("");
+                        Call Story line add("might so that I can become the king") wait input("") end of section("");
+                        Call Story line add("of killing monsters with my manpower!") wait input(1) end of section("");
+                        Call Story line add("(Yes, there are certainly men that like to do this. ") wait input("") end of section("");
+                        Call Story line add("Whether it's true will or it's tomfoolery, I'll") wait input("") end of section("");
+                        Call Story line add("let him be himself, for I'm still not sure") wait input("") end of section("");
+                        Call Story line add("who am I.)") wait input(1) end of section("");
+                        List.Add(flags, "eend4");
+                    }
+                    If (((Enemy == 9) Or (Enemy No.2 == 9)) And (Not (List.ContainsItem(flags, "en9end"))))
+                    {
+                        List.DeleteAll(A Message Log);
+                        Sound.Play(Scream1);
+                        Looks.Show();
+                        Call Story line add("Drayden: Exactly, little girl, your imagination") wait input("") end of section("");
+                        Call Story line add("is literally just nothing more than poison!") wait input(1) end of section("");
+                        Call Story line add("Lyra: And don't you think your noise") wait input("") end of section("");
+                        Call Story line add("is noxious too?") wait input(1) end of section("");
+                        Call Story line add("Drayden: Shut your mouth! Resentfully") wait input("") end of section("");
+                        Call Story line add("Are you crazzy?") wait input(1) end of section("");
+                        Call Story line add("Lyra: Though, I think sometimes it can just") wait input("") end of section("");
+                        Call Story line add("be peaceful to daydream.") wait input(1) end of section("");
+                        Call Story line add("(Me too, noise can influence ability to focus on") wait input("") end of section("");
+                        Call Story line add("one specific thing. Es-specially if it is just") wait input("") end of section("");
+                        Call Story line add("meaningless yap like this ragebait!)") wait input(1) end of section("");
+                        Call Story line add("Drayden: Airhead dingbat, don't you realize nobody") wait input("") end of section("");
+                        Call Story line add("but a cuckoo scatterbrain would walk into") wait input("") end of section("");
+                        Call Story line add("a cave UNARMED!") wait input(1) end of section("");
+                        Call Story line add("Lyra: ...") wait input(1) end of section("");
+                        Call Story line add("(It's getting as heated as his blade!") wait input("") end of section("");
+                        Call Story line add("But, I shall have us going.)") wait input(1) end of section("");
+                        List.Add(flags, "en9end");
+                    }
+                    If (((Enemy == 14) Or (Enemy No.2 == 14)) And (Not (List.ContainsItem(flags, "e14aaaaa"))))
+                    {
+                        List.DeleteAll(A Message Log);
+                        Looks.Show();
+                        Call Story line add("(I killed the alien... I'm still here...") wait input("") end of section("");
+                        Call Story line add("Is there light, or is it an eternal night?)") wait input(1) end of section("");
+                        Call Story line add("Lyra: Huh. Perhaps it's only an hour, but") wait input("") end of section("");
+                        Call Story line add("sometimes it feels like daze, I mean days.") wait input(1) end of section("");
+                        Call Story line add("Drayden: What sort of power is that a-lie-an?") wait input("") end of section("");
+                        Call Story line add("AN ALTERNATE REALITY?") wait input(1) end of section("");
+                        Call Story line add("Lyra: Under God's omnipotence and omnibenevolence") wait input("") end of section("");
+                        Call Story line add("such creatures shouldn't even exist...") wait input(1) end of section("");
+                        Call Story line add("(Is my brain just imagining a world where evil") wait input("") end of section("");
+                        Call Story line add("is no more? To bring hope in a world totally") wait input("") end of section("");
+                        Call Story line add("filled with eternal doom, or is it...)") wait input(1) end of section("");
+                        Call Story line add("Dark Spirit: HEHE, WITH ME AROUND, YOUR") wait input("") end of section("");
+                        Call Story line add("CONSCIENCE WILL BE ALTERED TO THE POINT OF") wait input("") end of section("");
+                        Call Story line add("NO RETURN, AND YOU SHALL LIVE YOUR LIFE ") wait input("") end of section("");
+                        Call Story line add("IN A HALLUCINATION ETERNAL.") wait input(1) end of section("");
+                        Call Story line add("Lyra: Was I hearing Satanic voices?") wait input(1) end of section("");
+                        Call Story line add("Drayden: Me too! Defy that dreatched demonic") wait input("") end of section("");
+                        Call Story line add("dabbing death-doomer, PLEASE!") wait input(1) end of section("");
+                        Call Story line add("Dark Spirit: ALL SHALL BE CONSUMED, AND") wait input("") end of section("");
+                        Call Story line add("NONE SHALL REMAIN. PREPARE TO BE TRAPPED") wait input("") end of section("");
+                        Call Story line add("ETERNALLY IN DARKNESS, FOREVER!!!!!!") wait input(1) end of section("");
+                        Call Story line add("(What a classic trope, Nilihistic Nice-Ninja!)") wait input(1) end of section("");
+                        Call Story line add("Drayden: But who will be decimated this") wait input("") end of section("");
+                        Call Story line add("time? You and not us!!") wait input(1) end of section("");
+                        List.Add(flags, "e14aaaaa");
+                    }
+                    Control.Wait(0.6);
+                    Call add_d!(17);
+                    Control.Wait(0.6);
+                    Call add_d!(17);
+                }
+            }
+        }
+        If (List.ContainsItem(flags, "diethart") And (Not (List.ContainsItem(flags, "lastpearls"))))
+        {
+            List.Add(flags, "lastpearls");
+            Call Story line add("Drayden: WE'RE SO POWERFUL!!") wait input(1) end of section("");
+            Call Story line add("(That we can beat death? That doesn't") wait input("") end of section("");
+            Call Story line add("even occur one in a million years...") wait input("") end of section("");
+            Call Story line add("or does it, in an alternate reality where") wait input("") end of section("");
+            Call Story line add("dreams and technology indeed come true!)") wait input(1) end of section("");
+        }
+        If (sqrt((abs(Motion.XPosition()) + abs(Motion.YPosition()))) > 6)
+        {
+            MAP X += (Motion.XPosition() / 2);
+            MAP Y += (Motion.YPosition() / 2);
+            Motion.SetX((Motion.XPosition() / 2));
+            Motion.SetY((Motion.YPosition() / 2));
+        }
+        If (CMOVINGH > 0)
+        {
+            Call add_d!(1);
+        }
+    }
+}
+
+WhenGreenFlagClicked()
+{
+    F = 67;
+    Forever
+    {
+        If (Battleover? == 1)
+        {
+            If (F == -1)
+            {
+                Sound.PlayUntilDone(Sneaker Squeak);
+            }
+            If (F == -2)
+            {
+                Sound.PlayUntilDone(Operator.Random(3 , 6));
+            }
+            List.ReplaceItem(Character HP, 1, (10 * (Character levels[1] + zAdditional HP characters (*10)[1])));
+            If (Not ((Operator.Join(Character HP[2], "A") == "-0A")))
+            {
+                List.ReplaceItem(Character HP, 2, (10 * (Character levels[2] + zAdditional HP characters (*10)[2])));
+            }
+            If (Not ((Operator.Join(Character HP[3], "A") == "-0A")))
+            {
+                List.ReplaceItem(Character HP, 3, (10 * (Character levels[3] + zAdditional HP characters (*10)[3])));
+            }
+        }
+    }
+}
+
+WhenGreenFlagClicked()
+{
+    Forever
+    {
+        Wait Until (Sensing.TouchingColour(#67b5f1) Or (Sensing.TouchingObject(rbtoggle/cave) And (AREA == 2)));
+        If (Battleover? == 1)
+        {
+            Control.Wait(0.1);
+            If (story despite battle < 1)
+            {
+                Sound.Play(save);
+                Call Story line add("Game saved.") wait input("") end of section("");
+                Call Save;
+                Wait Until ((Not ((Sensing.TouchingColour(#67b5f1) Or (Sensing.TouchingObject(rbtoggle/cave) And (AREA == 2))))) And (CMOVINGH > 0));
+                List.DeleteAll(A Message Log);
+                If (Not (List.ContainsItem(flags, "saveffff")))
+                {
+                    Mspeed = 0;
+                    Call Story line add("(So I have saved one particular state") wait input("") end of section("");
+                    Call Story line add("of my conciousness, or do I even have") wait input("") end of section("");
+                    Call Story line add("it?)") wait input(1) end of section("");
+                    Call Story line add("(Or am I just a being causing multiple parallel") wait input("") end of section("");
+                    Call Story line add("time dimensions? Argh...)") wait input(1) end of section(1);
+                    Mspeed = 8.1;
+                    List.Add(flags, "saveffff");
+                    List.Add(save data, "saveffff");
+                }
+            }
+            Else
+            {
+                Control.Wait(0.2);
+            }
+        }
+    }
+}
+
+WhenGreenFlagClicked()
+{
+    RBtoggle = 0;
+    Forever
+    {
+        If (Sensing.TouchingObject(rbtoggle/cave) And (AREA == 3))
+        {
+            Sound.Play(Alert);
+            RBtoggle = (1 - RBtoggle);
+            Wait Until (Not (Sensing.TouchingObject(rbtoggle/cave)));
+            Control.Wait(0.3);
+            If (Not (List.ContainsItem(flags, "rbtog")))
+            {
+                Mspeed = 0;
+                Call Story line add("(These things, huh? Welp!") wait input("") end of section("");
+                Call Story line add("They alternate between... red.. and.. blue.)") wait input(1) end of section("");
+                Call Story line add("Drayden: The blood of my enemies and") wait input("") end of section("");
+                Call Story line add("the color of my clothes!") wait input(1) end of section("");
+                Call Story line add("Lyra: The colour of what is said to be") wait input("") end of section("");
+                Call Story line add("hell and the colour of the sky!") wait input(1) end of section(1);
+                Call Story line add("(Still, these things are a fun, or not-so-fun") wait input("") end of section("");
+                Call Story line add("teaser for my wandering brain?)") wait input(1) end of section("");
+                Mspeed = 8.1;
+                List.Add(flags, "rbtog");
+            }
+        }
+    }
+}
+
+
+//----- Broadcast received events -------------------------------------------------------------------------------------
+
+WhenBroadcastReceived(debug sssssssssssssssss)
+{
+    STEP = 999999;
+}
+
+WhenBroadcastReceived(dialogueforfinalboss2)
+{
+    Control.Wait(2);
+    List.DeleteAll(A Message Log);
+    Call Story line add("Spectral Overlord: Why do you still bother to") wait input("") end of section("");
+    Call Story line add("struggle with living? This is the last time you") wait input("") end of section("");
+    Call Story line add("will experience such a wonderful loop.") wait input(1) end of section("");
+    Call Story line add("Spectral Overlord: But none shall live to regret") wait input("") end of section("");
+    Call Story line add("triggering my true potential, unlike the birdbrain") wait input("") end of section("");
+    Call Story line add("Lyra, the wimp Drayden, and last but not least,") wait input(1) end of section("");
+    Call Story line add("Spectral Overlord: You, the everlasting ruminator") wait input("") end of section("");
+    Call Story line add("who failed to perceive that you were in an eternal") wait input("") end of section("");
+    Call Story line add("yet hollow reverie all along. None shall remain.") wait input("") end of section("");
+    Call Story line add("WAHAHAHAHA!") wait input(1) end of section("");
+}
+
+WhenBroadcastReceived(End)
+{
+    Stop(other scripts in sprite);
+    Looks.Hide();
+    Control.DeleteThisClone();
+}
+
+
+//----- Start as clone ------------------------------------------------------------------------------------------------
+
+Control.WhenIStartAsClone()
+{
+    Looks.SwitchCostumeTo(a10);
+    Looks.SetEffectTo(BRIGHTNESS, -99);
+    sx = MAP X;
+    sy = MAP Y;
+    Repeat (20)
+    {
+        Motion.GoToXY((sx - MAP X), (sy - MAP Y));
+        Motion.ChangeXBy(Sensing.Of(x position, Overworld Player));
+        Motion.ChangeYBy(Sensing.Of(y position, Overworld Player));
+        Looks.ChangeEffectBy(GHOST, 5);
+    }
+    Control.DeleteThisClone();
+}
+
+
+//----- Custom blocks -------------------------------------------------------------------------------------------------
+
+Define add_d!(string n) (warp=true)
+{
+    Repeat (n)
+    {
+        List.Add(followx, (MAP X + Motion.XPosition()));
+        List.Add(followy, (MAP Y + Motion.YPosition()));
+        List.Add(followd, Motion.Direction());
+    }
+}
+
+Define FiddleOut (warp=true)
+{
+    Looks.SetSizeTo(44);
+    F = 1;
+    Motion.ChangeYBy(-16);
+    If (Not (Sensing.TouchingObject(Map)))
+    {
+        F = 0.01;
+    }
+    If (F == 1)
+    {
+        Repeat Until (F == 0.01)
+        {
+            Motion.Move(F);
+            If (Not (Sensing.TouchingObject(Map)))
+            {
+                F = 0;
+            }
+            Motion.Move((0 - F));
+            F += 0.01;
+            Motion.TurnRight(22.5);
+        }
+        Motion.PointInDirection(Motion.XPosition());
+        F = -1;
+    }
+    Motion.ChangeYBy(16);
+    Looks.SetSizeTo(100);
+}
+
+Define Load (warp=true)
+{
+    List.ReplaceItem(ItemCounter, 1, save data[1]);
+    List.ReplaceItem(ItemCounter, 2, save data[2]);
+    List.ReplaceItem(ItemCounter, 3, save data[3]);
+    List.ReplaceItem(ItemCounter, 4, save data[4]);
+    List.ReplaceItem(ItemCounter, 5, save data[5]);
+    List.ReplaceItem(ItemCounter, 6, save data[6]);
+    List.ReplaceItem(Character exp, 1, save data[7]);
+    List.ReplaceItem(Character exp, 2, save data[8]);
+    List.ReplaceItem(Character exp, 3, save data[9]);
+    AREA = save data[10];
+    RBtoggle = save data[12];
+    If (save data[11] == "true")
+    {
+        MAP X = save2x[save data[10]];
+        MAP Y = save2y[save data[10]];
+    }
+    saveflagc = 0;
+    Repeat (List.Length(save data))
+    {
+        saveflagc += 1;
+        List.Add(flags, save data[saveflagc]);
+        List.Add(Collecteditems, save data[saveflagc]);
+    }
+    Call replv(1);
+    Call replv(2);
+    Call replv(3);
+    If (AREA > 1)
+    {
+        List.ReplaceItem(Character HP, 2, 1);
+    }
+    If (AREA > 2)
+    {
+        List.ReplaceItem(Character HP, 3, 1);
+    }
+}
+
+Define replv(string number or text) (warp=false)
+{
+    Repeat Until (((Character exp[number or text] - Exp Table[(Character levels[number or text] - 1)]) / (Exp Table[Character levels[number or text]] - Exp Table[(Character levels[number or text] - 1)])) < 0.9999)
+    {
+        List.ReplaceItem(Character levels, number or text, (Character levels[number or text] + 1));
+        List.ReplaceItem(Character Stats AAADDDSSS, number or text, character stat tables[(Character levels[number or text] + ((number or text - 1) * 35))]);
+    }
+}
+
+Define Save (warp=true)
+{
+    List.DeleteAll(save data);
+    List.Add(save data, ItemCounter[1]);
+    List.Add(save data, ItemCounter[2]);
+    List.Add(save data, ItemCounter[3]);
+    List.Add(save data, ItemCounter[4]);
+    List.Add(save data, ItemCounter[5]);
+    List.Add(save data, ItemCounter[6]);
+    List.Add(save data, Character exp[1]);
+    List.Add(save data, Character exp[2]);
+    List.Add(save data, Character exp[3]);
+    List.Add(save data, AREA);
+    List.Add(save data, (MAP X > -1000));
+    List.Add(save data, RBtoggle);
+    saveflagc = 0;
+    Repeat (List.Length(flags))
+    {
+        saveflagc += 1;
+        List.Add(save data, flags[saveflagc]);
+    }
+    saveflagc = 0;
+    Repeat (List.Length(Collecteditems))
+    {
+        saveflagc += 1;
+        List.Add(save data, Collecteditems[saveflagc]);
+    }
+}
+
+Define Story line add(string .) wait input(string wait input) end of section(string end) (warp=false)
+{
+    F = 0;
+    story despite battle = 1;
+    message delay = -23;
+    List.Add(A Message Log, .);
+    Control.Wait((wait input / 1.5));
+    Repeat Until ((Sensing.MouseDown() Or Sensing.KeyPressed(any)) Or (Not ((wait input == 1))))
+    {
+        message delay = -6.1;
+    }
+    If (wait input == 1)
+    {
+        Sound.Play(Bling1);
+    }
+    Repeat (wait input)
+    {
+        List.DeleteAll(A Message Log);
+    }
+    If (Not ((end == 1)))
+    {
+        List.Add(A Message Log, " ");
+    }
+    Control.Wait(0.04);
+    story despite battle = 0;
+    List.DeleteItem(A Message Log, List.Length(A Message Log));
+}
+
+
+//----- Orphaned blocks -----------------------------------------------------------------------------------------------
+
+Call Story line add("(Isn't this what it is turning into?)") wait input(1) end of section("");
+
+
+//----- Costumes ------------------------------------------------------------------------------------------------------
+
+a.png
+a2.png
+a3.png
+a4.png
+a5.png
+a6.png
+a7.png
+a8.png
+a9.png
+a10.png
+costume1.svg
+
+
+//----- Sounds --------------------------------------------------------------------------------------------------------
+
+Alert.wav
+Bling1.wav
+buy.wav
+E minor.wav
+Footsteps.wav
+Footsteps2.wav
+Footsteps3.wav
+Footsteps4.wav
+laser3.wav
+pop.wav
+save.wav
+Scream1.wav
+Scream2.wav
+Sneaker Squeak.wav
+Teleport.wav
+Teleport2.wav

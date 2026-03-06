@@ -1,0 +1,57 @@
+//----- Variables -----------------------------------------------------------------------------------------------------
+
+attacker = 0
+counter t = 0
+para'd = 0
+target = 0
+
+
+
+//----- Green flag events ---------------------------------------------------------------------------------------------
+
+WhenGreenFlagClicked()
+{
+    Motion.GoToXY(0, 0);
+    Looks.Show();
+    Looks.SwitchCostumeTo(costume2);
+    Control.CreateCloneOf(_myself_);
+    Repeat Until (title screen == 0)
+    {
+        Looks.SwitchCostumeTo(costume1);
+        Looks.SetEffectTo(WHIRL, (sin((Sensing.Timer() * 90)) * 5));
+        Looks.SetEffectTo(FISHEYE, (sin((Sensing.Timer() * 180)) * 5));
+    }
+    Control.Wait(0.6);
+    Event.Broadcast("delete clone title screen");
+    Looks.Hide();
+    Sound.StopAllSounds();
+}
+
+
+//----- Broadcast received events -------------------------------------------------------------------------------------
+
+WhenBroadcastReceived(delete clone title screen)
+{
+    Control.DeleteThisClone();
+}
+
+
+//----- Start as clone ------------------------------------------------------------------------------------------------
+
+Control.WhenIStartAsClone()
+{
+    Costume.GoToFrontBack(front);
+    Forever
+    {
+        Looks.ChangeEffectBy(COLOR, 2.6);
+        Looks.SetEffectTo(FISHEYE, (sin((Sensing.Timer() * 322)) * -3));
+        Looks.SetEffectTo(WHIRL, (cos((Sensing.Timer() * 180)) * 12));
+        Looks.SetEffectTo(PIXELATE, (tan((sin((Sensing.Timer() * 73)) * 69)) * 20));
+    }
+}
+
+
+//----- Costumes ------------------------------------------------------------------------------------------------------
+
+costume1.svg
+costume2.svg

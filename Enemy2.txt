@@ -1,0 +1,105 @@
+//----- Variables -----------------------------------------------------------------------------------------------------
+
+attacker = 0
+counter t = 0
+para'd = 0
+target = 0
+
+
+
+//----- Green flag events ---------------------------------------------------------------------------------------------
+
+WhenGreenFlagClicked()
+{
+    Motion.GoToXY(153, -9);
+    Looks.Hide();
+}
+
+
+//----- Broadcast received events -------------------------------------------------------------------------------------
+
+WhenBroadcastReceived(BENC)
+{
+    Looks.Hide();
+    Repeat Until (EnemyHP < 1)
+    {
+        Looks.SwitchCostumeTo(Enemy);
+    }
+}
+
+WhenBroadcastReceived(ENC)
+{
+    Control.Wait(0.1);
+    Looks.Show();
+    Costume.GoToFrontBack(back);
+    Costume.MoveLayers(backward, 7);
+    Forever
+    {
+        Looks.SwitchCostumeTo( );
+        Looks.SwitchCostumeTo(Enemy No.2);
+        If (music state == 3)
+        {
+            Looks.Hide();
+            Stop(this script);
+        }
+        Looks.SetEffectTo(GHOST, 0);
+        Looks.Hide();
+        If (Battleover? == 0)
+        {
+            Looks.Show();
+            Repeat Until (enemy1killed == 1)
+            {
+                Looks.SetEffectTo(GHOST, 0);
+            }
+            Control.Wait(0.5);
+            If ((EnemyHP < 1) And (enemy1killed == 1))
+            {
+                Repeat (20)
+                {
+                    Looks.ChangeEffectBy(GHOST, 5);
+                }
+                Stop(this script);
+            }
+            Else
+            {
+                Looks.SetEffectTo(GHOST, 0);
+            }
+        }
+    }
+}
+
+WhenBroadcastReceived(finalboss2nd)
+{
+    Looks.Hide();
+    Looks.SwitchCostumeTo(Spectral Overlord);
+}
+
+
+//----- Costumes ------------------------------------------------------------------------------------------------------
+
+Aggresive Beehive.png
+Axe Killer.png
+Blade Wasp.png
+Dark Spirit.svg
+Demon Spiky.png
+Egg Cyclops.png
+Evil Wolf.png
+Fuming Viridflame.png
+Horned Slime.png
+King Slime.png
+Melancholy Witchy.png
+Mummy Stony.png
+Photonix.png
+Robotic Aerocyclops.png
+Scorching Inferno.png
+Spectral Overlord.png
+Stonewarding Statue.png
+Thornlash Devil.png
+Toxicant Insectoidius.png
+Vampire Bat.png
+Virulent Scorpion.png
+
+
+//----- Sounds --------------------------------------------------------------------------------------------------------
+
+pop.wav

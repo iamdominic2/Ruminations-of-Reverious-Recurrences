@@ -1,0 +1,179 @@
+//----- Variables -----------------------------------------------------------------------------------------------------
+
+attacker = 0
+counter t = 0
+m1 = 6
+para'd = 0
+target = 0
+
+
+//----- Lists ---------------------------------------------------------------------------------------------------------
+
+Unlocked skills = { 
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+    0
+}
+
+
+//----- Green flag events ---------------------------------------------------------------------------------------------
+
+WhenGreenFlagClicked()
+{
+    List.DeleteAll(Unlocked skills);
+    Repeat (18)
+    {
+        List.Add(Unlocked skills, 0);
+    }
+}
+
+
+//----- Broadcast received events -------------------------------------------------------------------------------------
+
+WhenBroadcastReceived(Menustats)
+{
+    Looks.Show();
+    Looks.SwitchCostumeTo(Menu);
+    Call UPDATE Stat;
+}
+
+WhenBroadcastReceived(statmenunext)
+{
+    Looks.NextCostume();
+    If (Costume.GetNumberName(number) > AREA)
+    {
+        Looks.NextCostume();
+        Looks.NextCostume();
+    }
+    Call UPDATE Stat;
+}
+
+WhenBroadcastReceived(statmenuprev)
+{
+    Looks.NextCostume();
+    Looks.NextCostume();
+    If (Costume.GetNumberName(number) > AREA)
+    {
+        Looks.NextCostume();
+    }
+    Call UPDATE Stat;
+}
+
+
+//----- Custom blocks -------------------------------------------------------------------------------------------------
+
+Define Hide DIS (warp=true)
+{
+}
+
+Define R.stat (warp=true)
+{
+    If (((Sensing.MouseX() > -170) And (Sensing.MouseX() < -150)) And (Operator.Join(Operator.Join(Operator.LetterOf(Character BuffPts TTTS[Costume.GetNumberName(number)], 1), Operator.LetterOf(Character BuffPts TTTS[Costume.GetNumberName(number)], 2)), Operator.LetterOf(Character BuffPts TTTS[Costume.GetNumberName(number)], 3)) > 0))
+    {
+        If ((Sensing.MouseY() < 75) And (Sensing.MouseY() > 50))
+        {
+            c73 = (Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 1), Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 2), Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 3))) + 1);
+            If (Variable.Length(c73) == 1)
+            {
+                c73 = Operator.Join(0, c73);
+            }
+            If (Variable.Length(c73) == 2)
+            {
+                c73 = Operator.Join(0, c73);
+            }
+            Sound.Play(Zoop);
+            List.ReplaceItem(Character Stats AAADDDSSS, Costume.GetNumberName(number), Operator.Join(c73, Operator.Join(Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 4), Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 5), Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 6))), Operator.Join(Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 7), Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 8), Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 9))), ""))));
+        }
+        Else
+        {
+            If ((Sensing.MouseY() < 20) And (Sensing.MouseY() > -5))
+            {
+                c73 = (Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 4), Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 5), Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 6))) + 1);
+                If (Variable.Length(c73) == 1)
+                {
+                    c73 = Operator.Join(0, c73);
+                }
+                If (Variable.Length(c73) == 2)
+                {
+                    c73 = Operator.Join(0, c73);
+                }
+                Sound.Play(Zoop);
+                List.ReplaceItem(Character Stats AAADDDSSS, Costume.GetNumberName(number), Operator.Join(Operator.Join(Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 1), Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 2), Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 3))), c73), Operator.Join(Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 7), Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 8), Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 9))), "")));
+            }
+            Else
+            {
+                If ((Sensing.MouseY() < -40) And (Sensing.MouseY() > -65))
+                {
+                    c73 = (Operator.Join(Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 7), Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 8), Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 9))), "") + 1);
+                    If (Variable.Length(c73) == 1)
+                    {
+                        c73 = Operator.Join(0, c73);
+                    }
+                    If (Variable.Length(c73) == 2)
+                    {
+                        c73 = Operator.Join(0, c73);
+                    }
+                    Sound.Play(Zoop);
+                    List.ReplaceItem(Character Stats AAADDDSSS, Costume.GetNumberName(number), Operator.Join(Operator.Join(Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 1), Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 2), Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 3))), Operator.Join(Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 4), Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 5), Operator.LetterOf(Character Stats AAADDDSSS[Costume.GetNumberName(number)], 6))), "")), c73));
+                }
+                Else
+                {
+                    Stop(this script);
+                }
+            }
+        }
+        List.ReplaceItem(Character BuffPts TTTS, Costume.GetNumberName(number), Operator.Join((Operator.Join(Operator.Join(Operator.LetterOf(Character BuffPts TTTS[Costume.GetNumberName(number)], 1), Operator.LetterOf(Character BuffPts TTTS[Costume.GetNumberName(number)], 2)), Operator.LetterOf(Character BuffPts TTTS[Costume.GetNumberName(number)], 3)) - 1), Operator.Round(List.ContainsItem(Character Skill Learn, Character levels[Costume.GetNumberName(number)]))));
+        Repeat Until (Variable.Length(Character BuffPts TTTS[Costume.GetNumberName(number)]) == 4)
+        {
+            List.ReplaceItem(Character BuffPts TTTS, Costume.GetNumberName(number), Operator.Join(0, Character BuffPts TTTS[Costume.GetNumberName(number)]));
+        }
+        Call UPDATE Stat;
+    }
+}
+
+Define UPDATE Stat (warp=false)
+{
+    Event.Broadcast("update stats");
+}
+
+
+//----- Orphaned blocks -----------------------------------------------------------------------------------------------
+
+attacker = 1;
+Call Heal(10) /10;
+If (Backdrop.GetNumberName(number) == 2)
+{
+    attacker = 2;
+    Call Heal(10) /10;
+    If (Backdrop.GetNumberName(number) > 2)
+    {
+        attacker = 3;
+        Call Heal(10) /10;
+    }
+}
+
+
+//----- Costumes ------------------------------------------------------------------------------------------------------
+
+Menu.svg
+
+
+//----- Sounds --------------------------------------------------------------------------------------------------------
+
+debuff.wav
+Zoop.wav

@@ -1,0 +1,206 @@
+//----- Variables -----------------------------------------------------------------------------------------------------
+
+attacker = 0
+counter t = 0
+para'd = 0
+target = 0
+
+
+
+//----- Green flag events ---------------------------------------------------------------------------------------------
+
+WhenGreenFlagClicked()
+{
+    Motion.GoToXY(90, -16);
+    Enemy = 1;
+    Looks.Hide();
+}
+
+
+//----- Broadcast received events -------------------------------------------------------------------------------------
+
+WhenBroadcastReceived(BENC)
+{
+    Control.Wait(1);
+    Looks.SwitchCostumeTo(Enemy);
+    Looks.SetEffectTo(GHOST, 0);
+    Looks.Show();
+    Enemy No.2 = 0;
+    Control.Wait(1);
+    Forever
+    {
+        Looks.SwitchCostumeTo(Enemy);
+        Looks.SetEffectTo(COLOR, 0);
+        Looks.Hide();
+        If (Battleover? == 0)
+        {
+            Looks.Show();
+            Costume.MoveLayers(forward, 1);
+            Costume.GoToFrontBack(back);
+            Looks.SetEffectTo(GHOST, 0);
+        }
+        If (EnemyHP < 1)
+        {
+            Repeat (20)
+            {
+                Looks.ChangeEffectBy(GHOST, 5);
+            }
+            Wait Until (Battleover? == 1);
+            Stop(this script);
+        }
+        Else
+        {
+            Looks.SetEffectTo(GHOST, 0);
+        }
+    }
+}
+
+WhenBroadcastReceived(ENC)
+{
+    Control.Wait(1);
+    Looks.SwitchCostumeTo(Enemy);
+    Looks.SetEffectTo(GHOST, 0);
+    Looks.Show();
+    Control.Wait(3);
+    Forever
+    {
+        Looks.SetEffectTo(COLOR, 0);
+        Looks.Hide();
+        If (Battleover? == 0)
+        {
+            Looks.Show();
+            Looks.SetEffectTo(GHOST, 0);
+        }
+        If (EnemyHP < 1)
+        {
+            Repeat (20)
+            {
+                Looks.ChangeEffectBy(GHOST, 5);
+            }
+            If (Enemy No.2 > 0)
+            {
+                Looks.SwitchCostumeTo(Enemy No.2);
+                Wait Until (Enemy No.2 == 0);
+                Looks.SwitchCostumeTo(Enemy);
+                Stop(this script);
+            }
+            Else
+            {
+                Wait Until (Battleover? == 1);
+                Stop(this script);
+            }
+            Control.Wait(1);
+        }
+        Else
+        {
+            Looks.SetEffectTo(GHOST, 0);
+        }
+    }
+}
+
+WhenBroadcastReceived(revealfinalboss2nd)
+{
+    Stop(other scripts in sprite);
+    Sound.Play(die2);
+    Looks.ClearGraphicEffects();
+    Looks.Show();
+    Looks.SwitchCostumeTo(Spectral Overlord );
+    Repeat (7)
+    {
+        Control.Wait(0.1);
+        Looks.NextCostume();
+    }
+    Looks.SwitchCostumeTo(Spectral Overlord);
+    Looks.ClearGraphicEffects();
+    Repeat (255)
+    {
+        Looks.SetEffectTo(COLOR, 0);
+        If (Battleover? == 0)
+        {
+            Costume.MoveLayers(forward, 1);
+            Costume.GoToFrontBack(back);
+            Looks.SetEffectTo(GHOST, 0);
+        }
+        enemy1killed = 0;
+    }
+    Forever
+    {
+        Looks.SetEffectTo(COLOR, 0);
+        If (Battleover? == 0)
+        {
+            Costume.MoveLayers(forward, 1);
+            Costume.GoToFrontBack(back);
+            Looks.SetEffectTo(GHOST, 0);
+        }
+        If (EnemyHP < 1)
+        {
+            Repeat (20)
+            {
+                Looks.ChangeEffectBy(GHOST, 5);
+            }
+            enemy1killed = 1;
+            If (Enemy No.2 > 0)
+            {
+                Looks.SwitchCostumeTo(Enemy No.2);
+                Wait Until (Enemy No.2 == 0);
+                Looks.SwitchCostumeTo(Enemy);
+                Stop(this script);
+            }
+            Else
+            {
+                Wait Until (Battleover? == 1);
+                Stop(this script);
+            }
+            Control.Wait(1);
+        }
+        Else
+        {
+            Looks.SetEffectTo(GHOST, 0);
+        }
+        enemy1killed = 0;
+    }
+}
+
+
+//----- Orphaned blocks -----------------------------------------------------------------------------------------------
+
+Looks.SwitchCostumeTo(Enemy);
+
+
+//----- Costumes ------------------------------------------------------------------------------------------------------
+
+ .png
+Aggresive Beehive.png
+Axe Killer.png
+Blade Wasp.png
+Dark Spirit.png
+Demon Spiky.png
+Egg Cyclops.png
+Evil Wolf.png
+Fuming Viridflame.png
+Horned Slime.png
+King Slime.png
+Melancholy Witchy.png
+Mummy Stony.png
+Photonix.png
+Robotic Aerocyclops.png
+Scorching Inferno.png
+Spectral   Overlord.png
+Spectral  Overlord.png
+Spectral Overlord.png
+Spectral   Overlord   .png
+Spectral  Overlord  .png
+Spectral Overlord .png
+Spectral Overlord  .png
+Spectral Overlord   .png
+Spectral Overlord    .png
+Stonewarding Statue.png
+Thornlash Devil.png
+Toxicant Insectoidius.png
+Vampire Bat.png
+Virulent Scorpion.png
+
+
+//----- Sounds --------------------------------------------------------------------------------------------------------
+
+die2.wav
