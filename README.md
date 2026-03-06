@@ -21,3 +21,5 @@ https://iamdominic2.github.io/RuminationsofReveriousRecurrences/
 HTML version (download and load): https://drive.google.com/file/d/1FTwCSjynBMwCNpUNuljzsW-XsySYcjuD/view?usp=sharing
 
 Note: I only documented post-implementation to ensure full accuracy with the final balanced numbers and code (especially the enemy stats), as I might forget to change things here along the way.
+
+Sorry if it is hard to understand (especailly for non-coders), but I have added some comments to describe what each script does.
