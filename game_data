@@ -1,6 +1,7 @@
 Sections: [SKILLS], [CHARACTER STATS], [EXP], [DAMAGE FORMULA], [MONSTER STATS], [MONSTER ACTIONS], [ITEMS] (Use Ctrl+F)
 
-[SKILLS]:
+[SKILLS]: These are the options that characters select during battle.
+
 | ID      | NAME             | MP | USER         | POWER | EFFECT                                        | TRIVIA                                     |
 |---------|------------------|----|--------------|-------|-----------------------------------------------|--------------------------------------------|
 | Attack  | (regular attack) | 0  | —            | 5     | —                                             | —                                          |
@@ -25,7 +26,7 @@ Sections: [SKILLS], [CHARACTER STATS], [EXP], [DAMAGE FORMULA], [MONSTER STATS],
 | Defend  | (Defend)         | 0  | —            | —     | User Defends (-50% dmg & regen 3 MP)          | —                                          |
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 
-[CHARACTER STATS]:
+[CHARACTER STATS]: These are the statistics of the player characters at a given level.
 
 ------------------------------------------------------------------------------------
 | Celeste (area 1, start at lv 1)    |                           |     |     |     |    
@@ -145,9 +146,9 @@ Sections: [SKILLS], [CHARACTER STATS], [EXP], [DAMAGE FORMULA], [MONSTER STATS],
 (Everyone's MP is constant at 10)
 (HP & MP Fully Restores after each fight)
 
-[EXP]:
+[EXP]: These numbers are how much amount of experience you need per level.
 
-| Exp Table (same for everyone) |                           |
+ Exp Table (same for everyone)                            
 |-------------------------------|---------------------------|
 | LV                            | TOTAL EXP needed for next |
 | 1                             | 7                         |
@@ -198,7 +199,7 @@ round(round((attack+lv-1)/(e^(def*0.009))*random(0.15,0.175))*power*(0.003*lv^2-
 Defend : Power*0.6
 Crit : Raw damage x1.8
 
-[MONSTER STATS]:
+[MONSTER STATS]: These are the statistics of the monsters that would be encountered during battle.
 
 | ID | Name                  | ATK | DEF | AGI | HP    | EXP | Area           | MP Drain | Actions/Turn |
 |----|-----------------------|-----|-----|-----|-------|-----|----------------|----------|--------------|
@@ -230,8 +231,10 @@ For 2 enemies: No.1: HP*0.71325 to 0.7485 No.2:HP*0.75
 MP drain is 40% chance, only applies to normal attack done by monster
 Dark Spirit transforms to Spectral Overlord on defeat (No Party Heal in between)
 **1-2 actions: 1 is 1/3 chance, 2 is 2/3 chance
+If your party's total level is above a set threshold for each location, 2 enemies will appear instead of 1 (randomly chosen, duplicates possible)
 
-[MONSTER ACTIONS]:
+[MONSTER ACTIONS]: These are the special abilities on the enemies' side.
+
 | USER                                          | MESSAGE                                                           | POWER | EFFECT                                                       |
 |-----------------------------------------------|-------------------------------------------------------------------|-------|--------------------------------------------------------------|
 | (all)                                         | attacks!                                                          | 5     |                                                              |
@@ -275,7 +278,7 @@ Dark Spirit transforms to Spectral Overlord on defeat (No Party Heal in between)
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Monster Special Attack chance: Enemy Numbers 1-8: 40%; Enemy Number 9-21: 60% (evenly split) 
 
-[ITEMS]
+[ITEMS]: These are the items that can be collected in the field and used during battle.
 
 | ID      | Name           |                                     |
 |---------|----------------|-------------------------------------|
