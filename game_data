@@ -1,4 +1,6 @@
-SKILLS:
+Sections: [SKILLS], [CHARACTER STATS], [EXP], [DAMAGE FORMULA], [MONSTER STATS], [MONSTER ACTIONS] (Use Ctrl+F)
+
+[SKILLS]:
 | ID      | NAME             | MP | USER         | POWER | EFFECT                                        | TRIVIA                                     |
 |---------|------------------|----|--------------|-------|-----------------------------------------------|--------------------------------------------|
 | Attack  | (regular attack) | 0  | —            | 5     | —                                             | —                                          |
@@ -30,7 +32,7 @@ SKILLS:
 
 *:internally round(39.5*10^(-0.4+(HP/MAXHP)*-0.8)+3)
 
-STATS:
+[CHARACTER STATS]:
 
   Celeste (area 1)                   
 | LV                                 | ATK                       | DEF | AGI | HP  |
@@ -145,6 +147,8 @@ STATS:
 | 35                                 | 80                        | 110 | 95  | 430 |
 (MP is constant at 10)
 
+[EXP]:
+
 | Exp Table (same for everyone) |                           |
 |-------------------------------|---------------------------|
 | LV                            | TOTAL EXP needed for next |
@@ -184,7 +188,7 @@ STATS:
 | 34                            | 9999                      |
 | 35                            | -                         |
 
-DAMAGE FORMULA
+[DAMAGE FORMULA]
 Damage Formula for Enemy -> Player:
 round(attack/(e^(def*0.00625))*random(0.18,0.20)*power)
 Defend : Attack *0.6
@@ -195,6 +199,8 @@ Damage Formula for Player -> Enemy
 round(round((attack+lv-1)/(e^(def*0.009))*random(0.15,0.175))*power*(0.003*lv^2-0.029*lv+1.11))
 Defend : Power*0.6
 Crit : Raw damage x1.8
+
+[MONSTER STATS]:
 
 | ID | Name                  | ATK | DEF | AGI | HP    | EXP | Area           | MP Drain | Actions/Turn |
 |----|-----------------------|-----|-----|-----|-------|-----|----------------|----------|--------------|
@@ -226,3 +232,47 @@ For 2 enemies: No.1: HP*0.71325 to 0.7485 No.2:HP*0.75
 MP drain is 40% chance, only applies to normal attack done by monster
 Dark Spirit transforms to Spectral Overlord on defeat (No Party Heal in between)
 **1-2 actions: 1 is 1/3 chance, 2 is 2/3 chance
+
+[MONSTER ACTIONS]:
+| USER                                          | MESSAGE                                                           | POWER | EFFECT                                                       |
+|-----------------------------------------------|-------------------------------------------------------------------|-------|--------------------------------------------------------------|
+| (all)                                         | attacks!                                                          | 5     |                                                              |
+| Horned Slime                                  | squished on X!                                                    | 2     | Sloth status 2 turns                                         |
+| Blade Wasp                                    | stung X!                                                          | 7     | 75% accuracy                                                 |
+| Axe Killer                                    | defends!                                                          | 0     | Self Defend status 3 turns                                   |
+| King Slime                                    | squished flat onto X!                                             | 2     | Sloth status 3 turns                                         |
+| King Slime                                    | puffs up and squeezes your team!                                  | 3.5   | Whole party                                                  |
+| Demon Spiky                                   | sharpens its spikes!                                              | 0     | Spiky status 3 turns                                         |
+| Mummy Stony                                   | tosses stones at the team!                                        | 2     | Whole party                                                  |
+| Scorching Infero                              | 's flames scorch X!                                               | 4     | Burn 3 turns                                                 |
+| Vampire Bat                                   | sucks blood!                                                      | 4     | Drain 75% of damage                                          |
+| Virulent Scorpion                             | lashed its poisonous tail!                                        | 2.5   | Whole party, Sloth + Poison status 4 turns                   |
+| Virulent Scorpion                             | drained the whole team's blood!                                   | 1.5   | Whole party, drain 100% of damage, vulnerable status 2 turns |
+| Melachony Witch                               | incants a poison spell!                                           | 2.5   | Whole party, Poison 3 turns                                  |
+| Melachony Witch                               | shoots freezing, stunning icebolts!                               | 1     | 4-6 hits, random targgeting, STUN 16% chance                 |
+| Aggressive Beehive                            | stings X's vital spots!                                           | 8     | 80% accuracy, Poison 2 turns                                 |
+| Aggressive Beehive                            | releases bee swarms!                                              | 1.5   | 4-6 hits, random targetting, vulnerable status 3 turns       |
+| Egg Cyclops                                   | shoots obstructing lasers from its eyeball!                       | 3     | Whole party, Sloth status 4 turns                            |
+| Egg Cyclops                                   | shoots bullets from its eyeball!                                  | 1.25  | 4-6 hits, random targetting                                  |
+| Evil Wolf                                     | bites X's flesh!                                                  | 4.5   | Vulnerable status 3 turns                                    |
+| Evil Wolf                                     | lets out a loud howl! / feels empowered!                          | 0     | Attack up status 3 turns, Stun party 22% chance              |
+| Photonix                                      | saps X's plasma with its laser and increases its attack!          | 3.5   | Attack up status 4 turns, Poisoned or burned status 3 turns  |
+| Photonix                                      | unleashes its mighty lightsaber! It then got slower and weaker... | 6.5   | Self Sloth status 2 turns, Self vulnerable status 3 turns    |
+| Photonix                                      | 's poison flaming spear stabs the team!                           | 2     | Whole party, Poisoned or burned status 2 turns               |
+| Thornlash Devil                               | attacks while sharpening its spikes!                              | 4.5   | Self spiked status                                           |
+| Thornlash Devil                               | headbutts the entire team aggresively with its thorns!            | 5.5   | Whole party, STUN 18% chance, self vulnerable status 3 turns |
+| Toxicant Insectoidius                         | shoots spider webs!                                               | 3.5   | Whole party, slow status 5 turns                             |
+| Toxicant Insectoidius                         | sprays poisonous acid!                                            | 2.5   | Whole party, poisoned status 3 turns                         |
+| Robotic Aerocyclops                           | shoots beams with all its might!                                  | 6     | Whole party, self vulnerable status 3 turns                  |
+| Robotic Aerocyclops                           | shot a slowing beam!                                              | 5.5   | Sloth status 4 turns                                         |
+| Fuming Viridflame                             | couldn't resist its fuming flames!                                | 2.5   | Whole party, Burn 4 turns                                    |
+| Fuming Viridflame                             | unleashed all its raging fury on X!                               | 4.5   | Burn 3 turns                                                 |
+| Stonewarding Statue                           | kicks X brutally!                                                 | 6.5   | Sloth status 3 turns                                         |
+| Stonewarding Statue                           | throws a big boulder!                                             | 4.5   | Whole party, self vulnerable status 2 turns                  |
+| Spectral Overlord                             | syphons your team's souls!                                        | 3     | Whole party, Corruption status 3 turns                       |
+| Spectral Overlord                             | ruins your team's mortals!                                        | 4     | Whole party, Vulnerable and Sloth status 3 turns             |
+| Spectral Overlord                             | unleases its skin burning, severely noxious hands on              | 3.5   | Burned and Poisoned status 4 turns                           |
+| Dark Spirit                                   | thwacks with its corrupted fists!                                 | 4.5   | Corruption status 5 turns, stun 49% chance                   |
+| Dark Spirit                                   | breathes scorching flames!                                        | 4     | Whole party, burned status 5 turns                           |
+|                                               |                                                                   |       |                                                              |
+Monster Special Attack chance: Enemy Numbers 1-8: 40%; Enemy Number 9-21: 60% (evenly split) 
