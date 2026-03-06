@@ -11,7 +11,7 @@ Be sure to save at the blue circles (one at the start of each area AND also befo
 Be sure not to be underleveled for the boss! Training to the maximum possible potential for each area and learn new skills along the way! Finally, have fun!
 
 This is probably the first of my games to have a proper story.
-Essentially, this game likely took the most hours to make out of all my games. Due to being busy IGCSE exams I had to pause development for over a year...
+Essentially, this game likely took the most hours to make out of all my games. 
 Though I am glad I did manage to make something this big, haven't done that in a while, or ever.
 
 Play:
