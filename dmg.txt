@@ -1,3 +1,5 @@
+//This is the BIG NUMBERS for the DAMAGE TAKING/HEALING.
+
 //----- Green flag events ---------------------------------------------------------------------------------------------
 
 WhenGreenFlagClicked()
@@ -31,7 +33,7 @@ Control.WhenIStartAsClone()
 
 //----- Custom blocks -------------------------------------------------------------------------------------------------
 
-Define Clone Gen Txt (warp=true)
+Define Clone Gen Txt (warp=true) //Generate the numbers itself
 {
     dmgnobcut = 0;
     Looks.SetEffectTo(COLOR, damage number color[1]);
