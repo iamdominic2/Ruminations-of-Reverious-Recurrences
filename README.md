@@ -24,4 +24,4 @@ Note: I only documented post-implementation to ensure full accuracy with the fin
 
 The engine is quite complex at first glance but I have added some comments to describe what each script does (For STAGE&BATTLE ENGINE, the two most important parts).
 
-The important parts occur in the 17)Overworld Player and 3)Battle Engine.
+The core logic of the overworld and battle systems occurs respectively in the 17)Overworld Player and 3)Battle Engine.
