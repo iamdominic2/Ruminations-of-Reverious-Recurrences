@@ -9,7 +9,7 @@ target = 0
 
 //----- Green flag events ---------------------------------------------------------------------------------------------
 
-WhenGreenFlagClicked()
+WhenGreenFlagClicked() //The map itself changes costume and switches along with the player's MAP X and MAP Y.
 {
     Forever
     {
