@@ -276,7 +276,7 @@ If your party's total level is above a set threshold for each location, 2 enemie
 | Dark Spirit                                   | thwacks with its corrupted fists!                                 | 4.5   | Corruption status 5 turns, stun 49% chance                   |
 | Dark Spirit                                   | breathes scorching flames!                                        | 4     | Whole party, burned status 5 turns                           |
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Monster Special Attack chance: Enemy Numbers 1-8: 40%; Enemy Number 9-21: 60% (evenly split) 
+Monster Special Attack chance: Enemy Numbers 1-8: 40%; Enemy Numbers 9-21: 60% (evenly split) 
 
 [ITEMS]: These are the items that can be collected in the field and used during battle.
 
@@ -293,3 +293,23 @@ Area 1 (Grasslands): 6 Potions  , 4 HiPotions
 Area 2 (Cave):       5 Potions  , 4 HiPotions , 1 MaxPotion
 Area 3 (Forest):     3 HiPotions, 2 MaxPotions, 2 Ethers,  2 Panaceas, 1 RevivalDew
 Area 4 (Pinnacle):   3 Potions  , 3 MaxPotions, 3 Ethers,  1 RevivalDew
+
+[CONDITIONS]: These are positive or negative effects that affect combat.
+
+| Name               | Effect                                                                                                                                                    |
+|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Vulnerable         | Take 30% more damage. A variant of this occurs after Drayden's Ravarage that lasts until the end of a turn but cannot be cured by status recovery.        |
+| Vulnerable (enemy) | Defense power halved. Can only be activated by Lyra's Whizzen.                                                                                            |
+| Poisoned           | Take damage each turn.                                                                                                                                    |
+| Guardian           | Heal 20% HP each turn for 5 turns. Activated by Lyra's Transentinel.                                                                                      |
+| Spiky              | Attacker takes 20 damage on physical contact. Only used by Demon Spiky and Thornlash Devil.                                                               |
+| Defending          | Halves received damage.                                                                                                                                   |
+| Sloth              | Halves speed. On the player's side, can be activated by Drayden's Slothstomp.                                                                             |
+| Focusing           | Guaranteed to score critical hits. Only activated by Drayden's Akillies.                                                                                  |
+| Overdrive          | Heal 1 MP each turn for 5 turns. Activated by Celeste's Calmunity.                                                                                        |
+| Burned             | Take damage and lowers damage dealt.                                                                                                                      |
+| Corruption         | Drain 15% HP each turn to the enemy. Used by the final boss.                                                                                              |
+| Paused             | Unable to act for 1 turn.                                                                                                                                 |
+| Lure               | Enemies only attack Celeste. Activated by Celeste's Ahlure.                                                                                               |
+| Bulwark            | Party takes -30% damage. Activated by Drayden's Blockaid.                                                                                                 |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
