@@ -1,4 +1,4 @@
-Sections: [SKILLS], [CHARACTER STATS], [EXP], [DAMAGE FORMULA], [MONSTER STATS], [MONSTER ACTIONS] (Use Ctrl+F)
+Sections: [SKILLS], [CHARACTER STATS], [EXP], [DAMAGE FORMULA], [MONSTER STATS], [MONSTER ACTIONS], [ITEMS] (Use Ctrl+F)
 
 [SKILLS]:
 | ID      | NAME             | MP | USER         | POWER | EFFECT                                        | TRIVIA                                     |
@@ -22,12 +22,6 @@ Sections: [SKILLS], [CHARACTER STATS], [EXP], [DAMAGE FORMULA], [MONSTER STATS],
 | Skill16 | Etheral Light    | 0  | Lyra Lv7     | 0     | Lose 30% HP, team heals 5 MP, cures status    | Ether = MP, Light = Holy                   |
 | Skill17 | Rejuolevenate    | 10 | Lyra Lv25    | 0     | Revives fallen teammates to 30% HP            | Rejuvenate + Joule (SI unit for energy)    |
 | Skill18 | Pleatition       | 2  | Lyra Lv27    | 5*    | More power the less HP the user has           | Plea + Petition (begging for help)         |
-| Item1   | (Potion)         | 0  | —            | —     | User heal 40% HP                              | —                                          |
-| Item2   | (HiPotion)       | 0  | —            | —     | User heal 70% HP                              | —                                          |
-| Item3   | (MaxPotion)      | 0  | —            | —     | User heal 100% HP                             | —                                          |
-| Item4   | (RevivalDew)     | 0  | —            | —     | Revives fallen teammates to 100% HP           | —                                          |
-| Item5   | (Ether)          | 0  | —            | —     | User heal 10 MP                               | —                                          |
-| Item6   | (Panacea)        | 0  | —            | —     | User is cured of all bad status               | —                                          |
 | Defend  | (Defend)         | 0  | —            | —     | User Defends (-50% dmg & regen 3 MP)          | —                                          |
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -278,6 +272,21 @@ Dark Spirit transforms to Spectral Overlord on defeat (No Party Heal in between)
 | Spectral Overlord                             | unleases its skin burning, severely noxious hands on              | 3.5   | Burned and Poisoned status 4 turns                           |
 | Dark Spirit                                   | thwacks with its corrupted fists!                                 | 4.5   | Corruption status 5 turns, stun 49% chance                   |
 | Dark Spirit                                   | breathes scorching flames!                                        | 4     | Whole party, burned status 5 turns                           |
-|                                               |                                                                   |       |                                                              |
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Monster Special Attack chance: Enemy Numbers 1-8: 40%; Enemy Number 9-21: 60% (evenly split) 
+
+[ITEMS]
+
+| ID      | Name           |                                     |
+|---------|----------------|-------------------------------------|
+| Item1   | Potion         | User heal 40% HP                    |
+| Item2   | HiPotion       | User heal 70% HP                    |
+| Item3   | MaxPotion      | User heal 100% HP                   |
+| Item4   | RevivalDew     | Revives fallen teammates to 100% HP |
+| Item5   | Ether          | User heal 5 MP                      |
+| Item6   | Panacea        | User is cured of all bad status     |
+------------------------------------------------------------------
+Area 1 (Grasslands): 6 Potions  , 4 HiPotions
+Area 2 (Cave):       5 Potions  , 4 HiPotions , 1 MaxPotion
+Area 3 (Forest):     3 HiPotions, 2 MaxPotions, 2 Ethers,  2 Panaceas, 1 RevivalDew
+Area 4 (Pinnacle):   3 Potions  , 3 MaxPotions, 3 Ethers,  1 RevivalDew
