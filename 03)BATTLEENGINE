@@ -1,3 +1,10 @@
+//Well, this is the battle system. 
+//What happens here is: When battle starts, reset status and set enemy HP, output the appearance text, check for ambush/pre-emptive.
+//Until Enemy 1's HP reaches zero, the system proceeds by calculating the turn order (skipping the dead and the paused), (waiting for a valid input if player's turn), and then the action occurs.
+//Afterwards, delete the first enemy, and delete all its status effects, and repeat the cycle again for the second enemy (if there is)
+//In the end, output the experience text and gain the experience. If the enemy has a second forme, restart the cycle.
+//Afterwards, delete the battle log and return to the overworld.
+
 //----- Variables -----------------------------------------------------------------------------------------------------
 
 attacker = 1
