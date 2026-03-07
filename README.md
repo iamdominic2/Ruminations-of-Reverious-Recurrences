@@ -15,7 +15,6 @@ Essentially, this game likely took the most hours to make out of all my games.
 Though I am glad I did manage to make something this big, I haven't done that in a while, or ever.
 
 Playable online link:
-https://iamdominic2.github.io/RuminationsofReveriousRecurrences/
 
 *The file itself is too big to upload here, so:
 HTML version (download and load): https://drive.google.com/file/d/1DwZxn26CEe-8_uXumbHZuKECztCIlFC5/view?usp=sharing
@@ -25,3 +24,5 @@ Note: I only documented post-implementation to ensure full accuracy with the fin
 The engine is quite complex at first glance but I have added some comments to describe what each script does (For STAGE&BATTLE ENGINE, the two most important parts).
 
 The core logic of the overworld and battle systems occurs respectively in the 17)Overworld Player and 3)Battle Engine.
+
+Project ID is 889388814
