@@ -1,6 +1,6 @@
 # Ruminations of Reverious Recurrences
-A traditional turn-based role-playing game where you discover your true identity by venturing through four fields.
-link: https://iamdominic2.itch.io/ruminations
+A traditional turn-based role-playing game where you discover your true identity by venturing through four fields!
+** LINK: https://iamdominic2.itch.io/ruminations **
 
 This is a traditional turn-based RPG, but you heal all HP/MP after each encounter to eliminate the traditional-but-outdated idea of resource management between battles.
 On the field, move with your mouse, WASD, or arrow keys. Press the "i" button to check Items and Status.
