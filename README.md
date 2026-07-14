@@ -1,8 +1,6 @@
 # Ruminations of Reverious Recurrences
 A traditional turn-based role-playing game where you discover your true identity by venturing through four fields! And then you sense something eerie... play to see more...
 
-**LINK (itch.io): https://iamdominic2.itch.io/ruminations**
-
 This is a traditional turn-based RPG, but you heal all HP/MP after each encounter to eliminate the traditional-but-outdated idea of resource management between battles, after all, most people don't like this!
 On the field, move with your mouse, WASD, or arrow keys. Press the "i" button to check Items and Status.
 Encounters are more likely to occur where there are objects, e.g., trees. Pick up items along the way!
@@ -14,12 +12,6 @@ This is probably the first of my games to have a proper story.
 Essentially, this game likely took the most hours to make out of all my games. 
 Though I am glad I did manage to make something this big, I haven't done that in a while, or ever.
 
-HTML version: https://drive.google.com/file/d/1DwZxn26CEe-8_uXumbHZuKECztCIlFC5/view?usp=sharing
-
-Note: I only documented post-implementation to ensure full accuracy with the final balanced numbers and code (especially the enemy stats), as I might forget to change things here along the way.
-
 The engine is quite complex at first glance, but I have added some comments to describe what each script does (for STAGE & BATTLE ENGINE, the two most important parts).
 
 The core logic of the overworld and battle systems occurs respectively in the 17)Overworld Player and 3)Battle Engine.
-
-Project ID is 889388814
