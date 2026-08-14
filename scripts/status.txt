@@ -1,0 +1,225 @@
+//----- Green flag events ---------------------------------------------------------------------------------------------
+
+WhenGreenFlagClicked()
+{
+    Event.Broadcast("del.clone2");
+    statusframe = 0;
+    Forever
+    {
+        Event.Broadcast("del.clone2");
+        If (Battleover? == 0)
+        {
+            statusframe += 0.27;
+            Looks.SetSizeTo(75);
+            Motion.GoToXY(-133, 152);
+            Call Clone Status(1);
+            Motion.GoToXY(-133, 129);
+            Call Clone Status(2);
+            Motion.GoToXY(-133, 108);
+            Call Clone Status(3);
+            Looks.SetSizeTo(75);
+            Motion.GoToXY(46, -136);
+            If (buttoned == 1)
+            {
+                Call Character/Team Status No.(15) Costume Name("Paused");
+                Call Character/Team Status No.(16) Costume Name("Paused");
+                Call Character/Team Status No.(6) Costume Name("Sloth");
+                Call Character/Team Status No.(10) Costume Name("Vulnerable");
+                Call Character/Team Status No.(12) Costume Name("+Atk");
+                Call Character/Team Status No.(13) Costume Name("+Def");
+                Call Character/Team Status No.(14) Costume Name("Spiky");
+                Call Character/Team Status No.(2) Costume Name("Poisoned");
+                Call Character/Team Status No.(8) Costume Name("Burned");
+            }
+        }
+    }
+}
+
+
+//----- Broadcast received events -------------------------------------------------------------------------------------
+
+WhenBroadcastReceived(del.clone2)
+{
+    Control.DeleteThisClone();
+}
+
+
+//----- Start as clone ------------------------------------------------------------------------------------------------
+
+Control.WhenIStartAsClone()
+{
+    Looks.Show();
+}
+
+
+//----- Custom blocks -------------------------------------------------------------------------------------------------
+
+Define Character/Team Status No.(string Number) Costume Name(string Name) (warp=false)
+{
+    Looks.SetEffectTo(GHOST, 0);
+    If (Character/team buffs[Number] > 0)
+    {
+        Looks.SwitchCostumeTo(Name);
+        If (Number == 15)
+        {
+            If (Enemy No.2 > 0)
+            {
+                Motion.ChangeYBy(-32);
+                Control.CreateCloneOf(_myself_);
+                Motion.ChangeYBy(32);
+            }
+        }
+        Else
+        {
+            If (Not ((Number == 16)))
+            {
+                If (Character/team buffs[Number] < 3)
+                {
+                    Looks.SetEffectTo(GHOST, 57);
+                    If (Character/team buffs[Number] == 1)
+                    {
+                        Looks.SetEffectTo(GHOST, (80 - (((statusframe % 2) < 1) * 23)));
+                    }
+                }
+            }
+        }
+        Control.CreateCloneOf(_myself_);
+        Motion.ChangeXBy(12);
+    }
+}
+
+Define Clone Status(string c) (warp=true)
+{
+    If (Character HP[c] > 0)
+    {
+        c106 = 0;
+        Looks.SwitchCostumeTo(Vulnerable);
+        Looks.SetEffectTo(GHOST, 0);
+        Repeat (13)
+        {
+            c106 += 1;
+            Looks.SetEffectTo(GHOST, 0);
+            If (Operator.LetterOf(Character Status[c], c106) > 0)
+            {
+                Looks.SetEffectTo(GHOST, 0);
+                If (Not (((Costume.GetNumberName(number) == 7) Or (Costume.GetNumberName(number) == 18))))
+                {
+                    If (Operator.LetterOf(Character Status[c], c106) < 3)
+                    {
+                        Looks.SetEffectTo(GHOST, 57);
+                        If (Operator.LetterOf(Character Status[c], c106) == 1)
+                        {
+                            Looks.SetEffectTo(GHOST, (80 - (((statusframe % 2) < 1) * 23)));
+                        }
+                    }
+                }
+                Control.CreateCloneOf(_myself_);
+                Motion.ChangeXBy(12);
+            }
+            Looks.NextCostume();
+            If (Costume.GetNumberName(number) == 13)
+            {
+                Looks.SwitchCostumeTo(Paused);
+            }
+        }
+        Looks.SetEffectTo(GHOST, 0);
+        If (Character/team buffs[1] > 0)
+        {
+            Looks.SetEffectTo(GHOST, 0);
+            If (Character/team buffs[1] < 3)
+            {
+                Looks.SetEffectTo(GHOST, 57);
+                If (Character/team buffs[1] == 1)
+                {
+                    Looks.SetEffectTo(GHOST, (80 - (((statusframe % 2) < 1) * 23)));
+                }
+            }
+            Looks.SwitchCostumeTo(Overdrive);
+            Control.CreateCloneOf(_myself_);
+            Motion.ChangeXBy(12);
+        }
+        Looks.SetEffectTo(GHOST, 0);
+        If ((Character/team buffs[3] > 0) And (c == 1))
+        {
+            Looks.SetEffectTo(GHOST, 0);
+            Looks.SwitchCostumeTo(Light);
+            Control.CreateCloneOf(_myself_);
+            Motion.ChangeXBy(12);
+        }
+        Looks.SetEffectTo(GHOST, 0);
+        If (Character/team buffs[4] > 0)
+        {
+            Looks.SetEffectTo(GHOST, 0);
+            Looks.SwitchCostumeTo(+Def2);
+            Control.CreateCloneOf(_myself_);
+            Motion.ChangeXBy(12);
+        }
+        Looks.SetEffectTo(GHOST, 0);
+        If ((Character/team buffs[5] > 0) And (c == 2))
+        {
+            Looks.SetEffectTo(GHOST, 0);
+            If (Character/team buffs[5] < 3)
+            {
+                Looks.SetEffectTo(GHOST, 57);
+                If (Character/team buffs[5] == 1)
+                {
+                    Looks.SetEffectTo(GHOST, (80 - (((statusframe % 2) < 1) * 23)));
+                }
+            }
+            Looks.SwitchCostumeTo(Focus);
+            Control.CreateCloneOf(_myself_);
+            Motion.ChangeXBy(12);
+        }
+        Looks.SetEffectTo(GHOST, 0);
+        If ((Character/team buffs[7] > 0) And (c == 2))
+        {
+            Looks.SetEffectTo(GHOST, 0);
+            Looks.SwitchCostumeTo(Vulnerable2);
+            Control.CreateCloneOf(_myself_);
+            Motion.ChangeXBy(12);
+        }
+        Looks.SetEffectTo(GHOST, 0);
+        If (Character/team buffs[9] > 0)
+        {
+            Looks.SetEffectTo(GHOST, 0);
+            If (Character/team buffs[9] < 3)
+            {
+                Looks.SetEffectTo(GHOST, 57);
+                If (Character/team buffs[9] == 1)
+                {
+                    Looks.SetEffectTo(GHOST, (80 - (((statusframe % 2) < 1) * 23)));
+                }
+            }
+            Looks.SwitchCostumeTo(Guardian);
+            Control.CreateCloneOf(_myself_);
+            Motion.ChangeXBy(12);
+        }
+    }
+}
+
+
+//----- Costumes ------------------------------------------------------------------------------------------------------
+
++Atk.png
++Def.png
++Def2.png
+Burned.png
+Corruption2.png
+costume1.svg
+Defending.png
+Focus.png
+Guardian.png
+Light.png
+Overdrive.png
+Paused.png
+Poisoned.png
+Sloth.png
+sluggish.png
+Spiky.png
+Vulnerable.png
+Vulnerable2.png
+
+
+//----- Sounds --------------------------------------------------------------------------------------------------------
+
+pop.wav

@@ -1,0 +1,96 @@
+//----- Variables -----------------------------------------------------------------------------------------------------
+
+costt = 0
+
+
+
+//----- Green flag events ---------------------------------------------------------------------------------------------
+
+WhenGreenFlagClicked()
+{
+    List.DeleteAll(flags);
+    Looks.SetSizeTo(50);
+    Looks.SwitchCostumeTo(c);
+    Looks.Hide();
+    Motion.GoToXY(-205, -36);
+    Control.CreateCloneOf(_myself_);
+    Looks.NextCostume();
+    Motion.GoToXY(-115, -36);
+    Control.CreateCloneOf(_myself_);
+    Looks.NextCostume();
+    Motion.GoToXY(-45, -36);
+    Control.CreateCloneOf(_myself_);
+    Forever
+    {
+        Looks.Hide();
+    }
+}
+
+
+//----- Broadcast received events -------------------------------------------------------------------------------------
+
+WhenBroadcastReceived(animation)
+{
+    If ((4 - Costume.GetNumberName(number)) == Sensing.Of(target, Battle))
+    {
+        If (Character HP[(4 - Costume.GetNumberName(number))] > 0)
+        {
+            Repeat (3)
+            {
+                Looks.Hide();
+                Repeat (1)
+;
+                Looks.Show();
+                Repeat (1)
+;
+            }
+            Looks.ClearGraphicEffects();
+        }
+    }
+}
+
+
+//----- Start as clone ------------------------------------------------------------------------------------------------
+
+Control.WhenIStartAsClone()
+{
+    costt = Costume.GetNumberName(number);
+    Forever
+    {
+        Costume.GoToFrontBack(back);
+        Looks.SwitchCostumeTo(costt);
+        If ((Character HP[(4 - Costume.GetNumberName(number))] < 1) Or (Battleover? == 1))
+        {
+            Looks.Show();
+            If ((Battleover? == 1) Or (Character HP[(4 - Costume.GetNumberName(number))] == -0))
+            {
+                Looks.Hide();
+            }
+            Else
+            {
+                Looks.NextCostume();
+                Looks.NextCostume();
+                Looks.NextCostume();
+            }
+        }
+        Else
+        {
+            Looks.Show();
+        }
+    }
+}
+
+
+//----- Costumes ------------------------------------------------------------------------------------------------------
+
+a.png
+b.png
+c.png
+guilherme-panisso-coffin-background.png
+guilherme-panisso-coffin-background2.png
+guilherme-panisso-coffin-background3.png
+
+
+//----- Sounds --------------------------------------------------------------------------------------------------------
+
+pop.wav

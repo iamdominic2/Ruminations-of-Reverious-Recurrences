@@ -1,0 +1,307 @@
+//----- Variables -----------------------------------------------------------------------------------------------------
+
+attacker = 0
+counter t = 0
+target = 0
+
+
+
+//----- Green flag events ---------------------------------------------------------------------------------------------
+
+WhenGreenFlagClicked()
+{
+    List.DeleteAll(Character HP);
+    List.DeleteAll(Character exp);
+    List.Add(Character exp, 0);
+    List.Add(Character exp, 62);
+    List.Add(Character exp, 410);
+    List.Add(Character HP, 60);
+    List.Add(Character HP, -0);
+    List.Add(Character HP, -0);
+    List.DeleteAll(Character levels);
+    List.Add(Character levels, 1);
+    List.Add(Character levels, 7);
+    List.Add(Character levels, 14);
+    List.DeleteAll(Character Stats AAADDDSSS);
+    List.Add(Character Stats AAADDDSSS, 018012014);
+    List.Add(Character Stats AAADDDSSS, 030010028);
+    List.Add(Character Stats AAADDDSSS, 015035045);
+    Looks.Hide();
+    Pen.Clear();
+    Forever
+    {
+        Pen.Clear();
+        If (Battleover? == 0)
+        {
+            Motion.GoToXY(0, 0);
+            Looks.SwitchCostumeTo(11);
+            Looks.SetEffectTo(BRIGHTNESS, 0);
+            Looks.SetEffectTo(GHOST, 33);
+            Pen.Stamp();
+            Looks.SwitchCostumeTo(costume1);
+            Call Paint(162) hp(Character HP[1]) /(((Character levels[1] + 5) * 10)) c(1);
+            Call Paint(140) hp(Character HP[2]) /(((Character levels[2] + 3) * 10)) c(2);
+            Call Paint(118) hp(Character HP[3]) /(((Character levels[3] + 8) * 10)) c(3);
+            Looks.SetEffectTo(BRIGHTNESS, 0);
+            If (Not ((Operator.Join(c, "a") == "-0a")))
+            {
+                Looks.SwitchCostumeTo(a);
+                Motion.GoToXY(-230, 168);
+                If (Character HP[1] < ((Character levels[1] + zAdditional HP characters (*10)[1]) * 2))
+                {
+                    Looks.SetEffectTo(BRIGHTNESS, 0);
+                    Looks.SetEffectTo(COLOR, 130);
+                    If (Character HP[1] < ((Character levels[1] + zAdditional HP characters (*10)[1]) * 1))
+                    {
+                        Looks.SetEffectTo(COLOR, 100);
+                    }
+                }
+                Else
+                {
+                    Looks.SetEffectTo(BRIGHTNESS, 100);
+                }
+                Pen.Stamp();
+            }
+            If (Not ((Operator.Join(Character HP[2], "a") == "-0a")))
+            {
+                Looks.SwitchCostumeTo(b);
+                Motion.GoToXY(-230, 146);
+                If (Character HP[2] < ((Character levels[2] + zAdditional HP characters (*10)[2]) * 2))
+                {
+                    Looks.SetEffectTo(BRIGHTNESS, 0);
+                    Looks.SetEffectTo(COLOR, 130);
+                    If (Character HP[2] < ((Character levels[2] + zAdditional HP characters (*10)[2]) * 1))
+                    {
+                        Looks.SetEffectTo(COLOR, 100);
+                    }
+                }
+                Else
+                {
+                    Looks.SetEffectTo(BRIGHTNESS, 100);
+                }
+                Pen.Stamp();
+            }
+            If (Not ((Operator.Join(Character HP[3], "a") == "-0a")))
+            {
+                Looks.SwitchCostumeTo(c);
+                Motion.GoToXY(-230, 124);
+                If (Character HP[3] < ((Character levels[3] + zAdditional HP characters (*10)[3]) * 2))
+                {
+                    Looks.SetEffectTo(BRIGHTNESS, 0);
+                    Looks.SetEffectTo(COLOR, 130);
+                    If (Character HP[3] < ((Character levels[3] + zAdditional HP characters (*10)[3]) * 1))
+                    {
+                        Looks.SetEffectTo(COLOR, 100);
+                    }
+                }
+                Else
+                {
+                    Looks.SetEffectTo(BRIGHTNESS, 100);
+                }
+                Pen.Stamp();
+            }
+            Looks.SetEffectTo(COLOR, 0);
+            If (buttoned == 1)
+            {
+                If (Sensing.Of(attacker, Battle) == 1)
+                {
+                    Motion.GoToXY(-220, -130);
+                    Looks.SwitchCostumeTo(costume1);
+                    Pen.Stamp();
+                }
+                If (Sensing.Of(attacker, Battle) == 2)
+                {
+                    Motion.GoToXY(-220, -153);
+                    Looks.SwitchCostumeTo(costume1);
+                    Pen.Stamp();
+                }
+                If (Sensing.Of(attacker, Battle) == 3)
+                {
+                    Looks.SwitchCostumeTo(costume1);
+                    Motion.GoToXY(-220, -173);
+                    Pen.Stamp();
+                }
+            }
+            Else
+            {
+            }
+        }
+    }
+}
+
+
+//----- Custom blocks -------------------------------------------------------------------------------------------------
+
+Define Mon HP (warp=true)
+{
+    Motion.GoToXY(25, 165);
+    Pen.SetPenColorToColor(#730000);
+    Pen.SetPenSizeTo(10);
+    Pen.Down();
+    hp = EnemyHP;
+    If (hp < 0)
+    {
+        hp = 0;
+    }
+    max = Operator.Join(Operator.Join(Operator.Join(Operator.LetterOf(mon stat AAADDSSHHHHEEEEM[Enemy], 8), Operator.LetterOf(mon stat AAADDSSHHHHEEEEM[Enemy], 9)), Operator.LetterOf(mon stat AAADDSSHHHHEEEEM[Enemy], 10)), Operator.LetterOf(mon stat AAADDSSHHHHEEEEM[Enemy], 11));
+    Motion.ChangeXBy(200);
+    Pen.Clear();
+    Motion.ChangeXBy(-200);
+    Pen.SetPenColorToColor(#356b00);
+    Pen.SetPenTo(color, ((hp / max) * 36));
+    Pen.SetPenSizeTo(8);
+    Repeat (3)
+    {
+        Motion.GoToXY(25, 165);
+        Pen.Down();
+        Motion.ChangeXBy(((hp / max) * 200));
+        Pen.Clear();
+        Pen.ChangePenSizeBy(-2);
+        Pen.ChangePenBy(brightness, 35);
+    }
+    Repeat (3)
+    {
+        Motion.GoToXY(25, 165);
+        Pen.Down();
+        Motion.ChangeXBy(((hp / max) * 200));
+        Pen.Clear();
+        Pen.ChangePenSizeBy(-2);
+        Pen.ChangePenBy(saturation, -12);
+    }
+}
+
+Define Paint(string y) hp(string c) /(string m) c(string b) (warp=true)
+{
+    If (Not ((Operator.Join(c, "a") == "-0a")))
+    {
+        Looks.ClearGraphicEffects();
+        Looks.SetEffectTo(BRIGHTNESS, 0);
+        hp = c;
+        If (c < 0)
+        {
+            hp = 0;
+        }
+        max = m;
+        Motion.GoToXY(-195, y);
+        Motion.ChangeYBy(2);
+        Pen.SetPenColorToColor(#000000);
+        Pen.SetPenSizeTo(2);
+        Pen.Down();
+        Motion.ChangeXBy(((max / 4) + 25));
+        Pen.Clear();
+        Pen.SetPenColorToColor(#10ff00);
+        Pen.SetPenSizeTo(2);
+        Motion.ChangeYBy(-2);
+        Motion.ChangeXBy(((max / -4) - 25));
+        Pen.Down();
+        Motion.ChangeXBy(((hp / 4) + ((hp / max) * 25)));
+        Pen.SetPenColorToColor(#000000);
+        Motion.SetX(((max / 4) - 170));
+        Pen.Clear();
+        Motion.SetX(-195);
+        Motion.ChangeYBy(-1);
+        Pen.SetPenColorToColor(#000000);
+        Pen.SetPenSizeTo(2);
+        Pen.Down();
+        Motion.ChangeXBy(((max / 4) + 25));
+        Pen.Clear();
+        Pen.SetPenColorToColor(#10ff00);
+        Pen.SetPenSizeTo(2);
+        Looks.SetSizeTo(100);
+        Motion.ChangeYBy(2);
+        If (Character HP[b] < ((Character levels[b] + zAdditional HP characters (*10)[b]) * 2))
+        {
+            Looks.SetEffectTo(BRIGHTNESS, 0);
+            Looks.SetEffectTo(COLOR, 130);
+            If (Character HP[b] < ((Character levels[b] + zAdditional HP characters (*10)[b]) * 1))
+            {
+                Looks.SetEffectTo(COLOR, 100);
+            }
+        }
+        Else
+        {
+            Looks.SetEffectTo(BRIGHTNESS, 100);
+        }
+        Motion.ChangeYBy(-10);
+        Motion.SetX(-193);
+        Looks.SetSizeTo(100);
+        Looks.SwitchCostumeTo(0);
+        Motion.ChangeXBy(7);
+        Looks.SwitchCostumeTo(0);
+        Looks.SwitchCostumeTo((floor(((hp * 1) / 100)) % 10));
+        If ((hp * 1) > 99)
+        {
+            Pen.Stamp();
+        }
+        Motion.ChangeXBy(7);
+        Looks.SwitchCostumeTo(0);
+        Looks.SwitchCostumeTo((floor((hp * 0.1)) % 10));
+        If ((hp * 1) > 9)
+        {
+            Pen.Stamp();
+        }
+        Looks.SwitchCostumeTo(0);
+        Motion.ChangeXBy(7);
+        Looks.SwitchCostumeTo(((hp * 1) % 10));
+        Pen.Stamp();
+        Motion.ChangeXBy(8);
+        Looks.SwitchCostumeTo(/);
+        Looks.ClearGraphicEffects();
+        Motion.ChangeXBy(15);
+        Motion.SetX(-150);
+        Looks.SwitchCostumeTo(e);
+        Looks.SetEffectTo(COLOR, 70);
+        Pen.Stamp();
+        Looks.SwitchCostumeTo(null);
+        Motion.ChangeXBy(7);
+        Looks.SwitchCostumeTo(Operator.LetterOf(Character MP[b], 1));
+        If (Character MP[b] == 10)
+        {
+            Looks.SwitchCostumeTo(10);
+        }
+        Pen.Stamp();
+        Looks.SwitchCostumeTo(null);
+        Motion.ChangeXBy(7);
+        Pen.Stamp();
+        Looks.SwitchCostumeTo(null);
+        Motion.ChangeXBy(7);
+        Looks.ClearGraphicEffects();
+        Pen.Stamp();
+    }
+}
+
+
+//----- Orphaned blocks -----------------------------------------------------------------------------------------------
+
+If 
+{
+}
+
+
+//----- Costumes ------------------------------------------------------------------------------------------------------
+
+/.png
+0.png
+1.png
+2.png
+3.png
+4.png
+5.png
+6.png
+7.png
+8.png
+9.png
+10.png
+11.png
+a.png
+b.png
+c.png
+costume1.png
+e.png
+Lv:.png
+null.png
+
+
+//----- Sounds --------------------------------------------------------------------------------------------------------
+
+pop.wav

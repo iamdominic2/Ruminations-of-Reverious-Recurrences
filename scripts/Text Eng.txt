@@ -1,0 +1,368 @@
+//----- Variables -----------------------------------------------------------------------------------------------------
+
+attacker = 0
+counter t = 0
+para'd = 0
+target = 0
+
+
+
+//----- Green flag events ---------------------------------------------------------------------------------------------
+
+WhenGreenFlagClicked()
+{
+    Looks.SwitchCostumeTo(10);
+    Looks.Hide();
+    Forever
+    {
+        Looks.SetEffectTo(BRIGHTNESS, 100);
+        Looks.SwitchCostumeTo(10);
+        Looks.SetSizeTo((20 * (((Battleover? == 1) Or (story despite battle == 1)) + 3)));
+        If (buttoned == 1)
+        {
+            If (story despite battle == 1)
+            {
+                Event.Broadcast("Delete Text");
+                Call Print(A Message Log[(ceiling(msg scroll) + -3)]) x(-220) y((-135 + ((msg scroll % 1) * 15)));
+                Call Print(A Message Log[(ceiling(msg scroll) + -2)]) x(-220) y((-150 + ((msg scroll % 1) * 15)));
+                Call Print(A Message Log[(ceiling(msg scroll) + -1)]) x(-220) y((-165 + ((msg scroll % 1) * 15)));
+                Call Print(A Message Log[ceiling(msg scroll)]) x(-220) y((-180 + ((msg scroll % 1) * 15)));
+            }
+            Else
+            {
+                Control.Wait(0);
+                Event.Broadcast("Delete Text");
+                Looks.SwitchCostumeTo(/);
+                Looks.SetSizeTo(50);
+                If ((enemy1killed == 1) Or (Enemy No.2 == 0))
+                {
+                    If (Enemy No.2 == 0)
+                    {
+                        Call Print(Sensing.Of(costume name, Enemy)) x(0) y(-123);
+                        Call Print(Operator.Join("HP", EnemyHP)) x(0) y(-138);
+                    }
+                    Else
+                    {
+                        Call Print(Sensing.Of(costume name, Enemy2)) x(0) y(-123);
+                        Call Print(Operator.Join("HP", EnemyHP)) x(0) y(-138);
+                    }
+                }
+                Else
+                {
+                    Call Print(Sensing.Of(costume name, Enemy)) x(0) y(-123);
+                    Call Print(Operator.Join("HP", EnemyHP)) x(0) y(-138);
+                    Call Print(Sensing.Of(costume name, Enemy2)) x(0) y(-153);
+                    Call Print(Operator.Join("HP", Operator.Round((Operator.Join(Operator.Join(Operator.LetterOf(mon stat AAADDSSHHHHEEEEM[Enemy No.2], 8), Operator.LetterOf(mon stat AAADDSSHHHHEEEEM[Enemy No.2], 9)), Operator.Join(Operator.LetterOf(mon stat AAADDSSHHHHEEEEM[Enemy No.2], 10), Operator.LetterOf(mon stat AAADDSSHHHHEEEEM[Enemy No.2], 11))) / (((Enemy No.2 > 0) / 3) + 1))))) x(0) y(-168);
+                }
+                If (HOVERITEM > 0)
+                {
+                    Call Print(Operator.Join("Qty ", ItemCounter[HOVERITEM])) x(200) y(-167);
+                }
+            }
+        }
+        Else
+        {
+            Event.Broadcast("Delete Text");
+            Call Print(A Message Log[(ceiling(msg scroll) + -3)]) x(-220) y((-135 + ((msg scroll % 1) * 15)));
+            Call Print(A Message Log[(ceiling(msg scroll) + -2)]) x(-220) y((-150 + ((msg scroll % 1) * 15)));
+            Call Print(A Message Log[(ceiling(msg scroll) + -1)]) x(-220) y((-165 + ((msg scroll % 1) * 15)));
+            Call Print(A Message Log[ceiling(msg scroll)]) x(-220) y((-180 + ((msg scroll % 1) * 15)));
+            If (Battleover? == 0.01)
+            {
+                If (Character exp[1] > 9999)
+                {
+                    List.ReplaceItem(Character exp, 1, 9999);
+                }
+                If (Character exp[2] > 9999)
+                {
+                    List.ReplaceItem(Character exp, 2, 9999);
+                }
+                If (Character exp[3] > 9999)
+                {
+                    List.ReplaceItem(Character exp, 3, 9999);
+                }
+                Looks.SwitchCostumeTo(10);
+                Looks.SetSizeTo(100);
+                Call Print("Celeste") x(-200) y(135);
+                Call Print(Operator.Join("@", (10 * (Character levels[1] + zAdditional HP characters (*10)[1])))) x(-200) y(113);
+                Call Print(Operator.Join("~", Operator.Round(Operator.Join(Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[1], 1), Operator.LetterOf(Character Stats AAADDDSSS[1], 2)), Operator.LetterOf(Character Stats AAADDDSSS[1], 3))))) x(-200) y(90);
+                Call Print(Operator.Join("`", Operator.Round(Operator.Join(Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[1], 4), Operator.LetterOf(Character Stats AAADDDSSS[1], 5)), Operator.LetterOf(Character Stats AAADDDSSS[1], 6))))) x(-200) y(65);
+                Call Print(Operator.Join("\", Operator.Round(Operator.Join(Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[1], 7), Operator.LetterOf(Character Stats AAADDDSSS[1], 8)), Operator.LetterOf(Character Stats AAADDDSSS[1], 9))))) x(-200) y(35);
+                Call Print(Operator.Join("Lv", Character levels[1])) x(-200) y(5);
+                Call Print(Operator.Join("Ex", Operator.Join(Operator.Join(Character exp[1], ""), ""))) x(-200) y(-20);
+                If (Character exp[1] < exp cap[AREA])
+                {
+                    Call Print(Operator.Join("Next", (Exp Table[Character levels[1]] - Character exp[1]))) x(-200) y(-45);
+                }
+                Else
+                {
+                    If (Character exp[1] == 9999)
+                    {
+                        Call Print(Operator.Join("Next", " MAX")) x(-200) y(-45);
+                    }
+                    Else
+                    {
+                        Call Print(Operator.Join("Next", " CAP")) x(-200) y(-45);
+                    }
+                }
+                If (AREA > 1)
+                {
+                    Call Print("Drayden") x(-62) y(135);
+                    Call Print(Operator.Join("@", (10 * (Character levels[2] + zAdditional HP characters (*10)[2])))) x(-62) y(113);
+                    Call Print(Operator.Join("~", Operator.Round(Operator.Join(Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[2], 1), Operator.LetterOf(Character Stats AAADDDSSS[2], 2)), Operator.LetterOf(Character Stats AAADDDSSS[2], 3))))) x(-62) y(90);
+                    Call Print(Operator.Join("`", Operator.Round(Operator.Join(Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[2], 4), Operator.LetterOf(Character Stats AAADDDSSS[2], 5)), Operator.LetterOf(Character Stats AAADDDSSS[2], 6))))) x(-62) y(65);
+                    Call Print(Operator.Join("\", Operator.Round(Operator.Join(Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[2], 7), Operator.LetterOf(Character Stats AAADDDSSS[2], 8)), Operator.LetterOf(Character Stats AAADDDSSS[2], 9))))) x(-62) y(35);
+                    Call Print(Operator.Join("Lv", Character levels[2])) x(-62) y(5);
+                    Call Print(Operator.Join("Ex", Operator.Join(Operator.Join(Character exp[2], ""), ""))) x(-62) y(-20);
+                    If (Character exp[2] < exp cap[AREA])
+                    {
+                        Call Print(Operator.Join("Next", (Exp Table[Character levels[2]] - Character exp[2]))) x(-62) y(-45);
+                    }
+                    Else
+                    {
+                        If (Character exp[2] == 9999)
+                        {
+                            Call Print(Operator.Join("Next", " MAX")) x(-62) y(-45);
+                        }
+                        Else
+                        {
+                            Call Print(Operator.Join("Next", " CAP")) x(-62) y(-45);
+                        }
+                    }
+                    If (AREA > 2)
+                    {
+                        Call Print("Lyra") x(77) y(135);
+                        Call Print(Operator.Join("@", (10 * (Character levels[3] + zAdditional HP characters (*10)[3])))) x(77) y(113);
+                        Call Print(Operator.Join("~", Operator.Round(Operator.Join(Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[3], 1), Operator.LetterOf(Character Stats AAADDDSSS[3], 2)), Operator.LetterOf(Character Stats AAADDDSSS[3], 3))))) x(77) y(90);
+                        Call Print(Operator.Join("`", Operator.Round(Operator.Join(Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[3], 4), Operator.LetterOf(Character Stats AAADDDSSS[3], 5)), Operator.LetterOf(Character Stats AAADDDSSS[3], 6))))) x(77) y(65);
+                        Call Print(Operator.Join("\", Operator.Round(Operator.Join(Operator.Join(Operator.LetterOf(Character Stats AAADDDSSS[3], 7), Operator.LetterOf(Character Stats AAADDDSSS[3], 8)), Operator.LetterOf(Character Stats AAADDDSSS[3], 9))))) x(77) y(35);
+                        Call Print(Operator.Join("Lv", Character levels[3])) x(77) y(5);
+                        Call Print(Operator.Join("Ex", Operator.Join(Operator.Join(Character exp[3], ""), ""))) x(77) y(-20);
+                        If (Character exp[3] < exp cap[AREA])
+                        {
+                            Call Print(Operator.Join("Next", (Exp Table[Character levels[3]] - Character exp[3]))) x(77) y(-45);
+                        }
+                        Else
+                        {
+                            If (Character exp[3] == 9999)
+                            {
+                                Call Print(Operator.Join("Next", " MAX")) x(77) y(-45);
+                            }
+                            Else
+                            {
+                                Call Print(Operator.Join("Next", " CAP")) x(77) y(-45);
+                            }
+                        }
+                    }
+                }
+                Call Print(Operator.Join("", ItemCounter[1])) x(-90) y(-70);
+                Call Print(Operator.Join("", ItemCounter[2])) x(-90) y(-90);
+                Call Print(Operator.Join("", ItemCounter[3])) x(-90) y(-110);
+                Call Print(Operator.Join("", ItemCounter[4])) x(-90) y(-130);
+                Call Print(Operator.Join("", ItemCounter[5])) x(-90) y(-150);
+                Call Print(Operator.Join("", ItemCounter[6])) x(-90) y(-170);
+            }
+        }
+    }
+}
+
+WhenGreenFlagClicked()
+{
+    Forever
+    {
+        If (List.Length(A Message Log) > (msg scroll + 0.1))
+        {
+            msg scroll += 0.25;
+        }
+        Else
+        {
+            If (List.Length(A Message Log) < 4)
+            {
+                msg scroll = 3.99;
+            }
+        }
+    }
+}
+
+
+//----- Broadcast received events -------------------------------------------------------------------------------------
+
+WhenBroadcastReceived(Delete Text)
+{
+    Control.DeleteThisClone();
+}
+
+WhenBroadcastReceived(End)
+{
+    Stop(other scripts in sprite);
+    Looks.Hide();
+    Control.DeleteThisClone();
+}
+
+WhenBroadcastReceived(showstatus)
+{
+}
+
+
+//----- Start as clone ------------------------------------------------------------------------------------------------
+
+Control.WhenIStartAsClone()
+{
+    If (Costume.GetNumberName(number) == 65)
+    {
+        Control.DeleteThisClone();
+    }
+    Looks.Show();
+    If ((Costume.GetNumberName(number) > 79) Or (Costume.GetNumberName(number) < 13))
+    {
+        Looks.SetEffectTo(BRIGHTNESS, 0);
+    }
+    Forever
+    {
+        If ((music state == 1) Or (story despite battle == 1))
+        {
+            Costume.GoToFrontBack(front);
+        }
+        Else
+        {
+            If (Not ((HOVERITEM > 0)))
+            {
+                Costume.GoToFrontBack(back);
+            }
+        }
+    }
+}
+
+
+//----- Custom blocks -------------------------------------------------------------------------------------------------
+
+Define Print(string text) x(string x) y(string y) (warp=true)
+{
+    If (Not (Operator.Contains(text, "Infinity")))
+    {
+        Motion.GoToXY(x, y);
+        ctext = 0;
+        Repeat (Variable.Length(text))
+        {
+            ctext += 1;
+            Looks.SwitchCostumeTo(Operator.LetterOf(text, ctext));
+            If (Not (((Costume.GetNumberName(number) == 65) Or (Costume.GetNumberName(number) == 75))))
+            {
+                Control.CreateCloneOf(_myself_);
+            }
+            Motion.ChangeXBy((Looks.Size() / 9));
+        }
+    }
+    Else
+    {
+    }
+}
+
+
+//----- Costumes ------------------------------------------------------------------------------------------------------
+
+ .svg
+!.svg
+$.svg
+'.svg
+(.svg
+).svg
+*.svg
++.svg
+,.svg
+-.svg
+..svg
+/.svg
+0.svg
+1.svg
+2.svg
+3.svg
+4.svg
+5.svg
+6.svg
+7.svg
+8.svg
+9.svg
+10.svg
+:.svg
+<.svg
+>.svg
+?.svg
+@.png
+A.svg
+a.svg
+B.svg
+b.svg
+C.svg
+c.svg
+D.svg
+d.svg
+E.svg
+e.svg
+F.svg
+f.svg
+G.svg
+g.svg
+H.svg
+h.svg
+I.svg
+i.svg
+J.svg
+j.svg
+K.svg
+k.svg
+L.svg
+l.svg
+M.svg
+m.svg
+N.svg
+n.svg
+O.svg
+o.svg
+P.svg
+p.svg
+Q.svg
+q.svg
+R.svg
+r.svg
+S.svg
+s.svg
+T.svg
+t.svg
+U.svg
+u.svg
+V.svg
+v.svg
+W.svg
+w.svg
+X.svg
+x.svg
+Y.svg
+y.svg
+Z.svg
+z.svg
+\.png
+`.png
+~.svg
+二.svg
+
+
+//----- Sounds --------------------------------------------------------------------------------------------------------
+
+charge.wav
+Chomp.wav
+Confusion.wav
+Equip.wav
+Explosion.wav
+Fire.wav
+Lightning.wav
+pop.wav
+Punch1.wav
+PunchKill2.wav
+Read.wav
+Slow.wav
+Snoring.wav
+Snort.wav
+Swish Effect2.wav
+Teleport2.wav
+Unequip.wav

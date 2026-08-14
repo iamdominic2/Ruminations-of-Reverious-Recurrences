@@ -1,0 +1,76 @@
+//----- Green flag events ---------------------------------------------------------------------------------------------
+
+WhenGreenFlagClicked()
+{
+    Forever
+    {
+        Call gen;
+    }
+}
+
+
+//----- Start as clone ------------------------------------------------------------------------------------------------
+
+Control.WhenIStartAsClone()
+{
+    Looks.Show();
+    Repeat (10)
+    {
+        Looks.ChengeSizeBy(3);
+        Motion.ChangeYBy(3);
+    }
+    Repeat (10)
+    {
+        Looks.ChengeSizeBy(2);
+        Looks.ChangeEffectBy(GHOST, 10);
+        Motion.ChangeYBy(2);
+    }
+    Control.DeleteThisClone();
+}
+
+
+//----- Custom blocks -------------------------------------------------------------------------------------------------
+
+Define Clone Gen Txt (warp=true)
+{
+    dmgnobcut = 0;
+    Looks.SetEffectTo(COLOR, damage number color[1]);
+    Repeat (Variable.Length(damage number text[1]))
+    {
+        dmgnobcut += 1;
+        Looks.SwitchCostumeTo(Operator.LetterOf(damage number text[1], dmgnobcut));
+        Control.CreateCloneOf(_myself_);
+        Motion.ChangeXBy(16);
+    }
+}
+
+Define gen (warp=true)
+{
+    Repeat (List.Length(damage number text))
+    {
+        Motion.GoToXY((damage number x[1] + (-9 * (Variable.Length(damage number text[1]) - 1))), -20);
+        Call Clone Gen Txt;
+        List.DeleteItem(damage number text, 1);
+        List.DeleteItem(damage number color, 1);
+        List.DeleteItem(damage number x, 1);
+    }
+}
+
+
+//----- Costumes ------------------------------------------------------------------------------------------------------
+
+0.svg
+1.svg
+2.svg
+3.svg
+4.svg
+5.svg
+6.svg
+7.svg
+8.svg
+9.svg
+
+
+//----- Sounds --------------------------------------------------------------------------------------------------------
+
+pop.wav

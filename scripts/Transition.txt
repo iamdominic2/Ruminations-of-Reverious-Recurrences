@@ -1,0 +1,54 @@
+//----- Green flag events ---------------------------------------------------------------------------------------------
+
+WhenGreenFlagClicked()
+{
+    Looks.Hide();
+    Costume.GoToFrontBack(front);
+}
+
+
+//----- Broadcast received events -------------------------------------------------------------------------------------
+
+WhenBroadcastReceived(ee)
+{
+    Looks.SetEffectTo(COLOR, 0);
+    Looks.Show();
+    Costume.GoToFrontBack(front);
+    Motion.GoToXY(0, 999);
+    Looks.SetEffectTo(BRIGHTNESS, -66);
+    Looks.SetEffectTo(GHOST, 96);
+    Repeat (15)
+    {
+        Costume.GoToFrontBack(front);
+        Motion.ChangeYBy(-25);
+        Looks.ChangeEffectBy(GHOST, -8);
+        Looks.ChangeEffectBy(BRIGHTNESS, 11);
+    }
+    Repeat (30)
+    {
+        Costume.GoToFrontBack(front);
+    }
+    If (Enemy No.2 > 0)
+    {
+        Repeat (42)
+        {
+            Costume.GoToFrontBack(front);
+        }
+    }
+    Repeat (10)
+    {
+        Costume.GoToFrontBack(front);
+        Looks.ChangeEffectBy(GHOST, 10);
+    }
+    Looks.Hide();
+}
+
+
+//----- Costumes ------------------------------------------------------------------------------------------------------
+
+line.svg
+
+
+//----- Sounds --------------------------------------------------------------------------------------------------------
+
+pop.wav

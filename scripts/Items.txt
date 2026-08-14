@@ -1,0 +1,117 @@
+//----- Variables -----------------------------------------------------------------------------------------------------
+
+clone no item = 10
+
+
+
+//----- Green flag events ---------------------------------------------------------------------------------------------
+
+WhenGreenFlagClicked()
+{
+    Looks.Hide();
+    List.DeleteAll(Collecteditems);
+    List.DeleteAll(ItemCounter);
+    Repeat (5)
+    {
+        List.Add(ItemCounter, 0);
+    }
+    clone no item = 0;
+    Repeat (10)
+    {
+        clone no item += 1;
+        Control.CreateCloneOf(_myself_);
+    }
+}
+
+
+//----- Start as clone ------------------------------------------------------------------------------------------------
+
+Control.WhenIStartAsClone()
+{
+    Forever
+    {
+        Looks.SetEffectTo(BRIGHTNESS, (sin((Sensing.Timer() * 250)) * 5));
+        Looks.SwitchCostumeTo((clone no item + ((AREA - 1) * 10)));
+        Looks.SetSizeTo(600);
+        Motion.GoToXY((0 - MAP X), (0 - MAP Y));
+        Looks.Hide();
+        If (Not (List.ContainsItem(Collecteditems, Costume.GetNumberName(name))))
+        {
+            Looks.Show();
+        }
+        If Sensing.TouchingObject(_edge_)
+        {
+            Looks.Hide();
+        }
+        If (Battleover? == 0)
+        {
+            Looks.Hide();
+        }
+        If Sensing.TouchingObject(Overworld Player)
+        {
+            Sound.Play(buy);
+            message delay = -8;
+            List.Add(A Message Log, Operator.Join(Operator.Join("Obtained 1 ", itemname[Operator.LetterOf(Costume.GetNumberName(name), 1)]), "!"));
+            List.Add(Collecteditems, Costume.GetNumberName(name));
+            List.ReplaceItem(ItemCounter, Operator.LetterOf(Costume.GetNumberName(name), 1), (ItemCounter[Operator.LetterOf(Costume.GetNumberName(name), 1)] + 1));
+            Repeat (10)
+            {
+                Looks.ChangeEffectBy(PIXELATE, 3);
+                Motion.GoToXY((0 - MAP X), (0 - MAP Y));
+                Looks.ChangeEffectBy(GHOST, 9);
+            }
+            Looks.Hide();
+            Looks.ClearGraphicEffects();
+        }
+    }
+}
+
+
+//----- Costumes ------------------------------------------------------------------------------------------------------
+
+1asfITHANMF.svg
+1ccITHANMF.svg
+1cITHANMF.svg
+1costume2ITHANMF.svg
+1costume3ITHANMF.svg
+1eITHANMF.svg
+1fbdsbsdsITHANMF.svg
+1fcsacITHANMF.svg
+1qITHANMF.svg
+1rITHANMF.svg
+1vdvavaavITHANMF.svg
+1wITHANMF.svg
+1zvzxvxvzITHANMF.svg
+2afaITHANMF.svg
+2bpITHANMF.svg
+2daddyITHANMF.svg
+2fITHANMF.svg
+2lateITHANMF.svg
+2rITHANMF.svg
+2rsfasITHANMF.svg
+3butawayITHANMF.svg
+3fITHANMF.svg
+3freevITHANMF.svg
+3nesaITHANMF.svg
+3threeeITHANMF.svg
+4magicaITHANMF.svg
+4magicalpurpoITHANMF.svg
+4shiniITHANMF.svg
+4themagicITHANMF.svg
+4xfbITHANMF.svg
+5mantanITHANMF.svg
+5panITHANMF.svg
+6costume1ITHANMF.svg
+6sevenITHANMF.svg
+12c1244c12ITHANMF.svg
+32playITHANMF.svg
+222lateITHANMF.svg
+222tITHANMF.svg
+2323vITHANMF.svg
+22222222222bvITHANMF.svg
+
+
+//----- Sounds --------------------------------------------------------------------------------------------------------
+
+buy.wav
+pop.wav

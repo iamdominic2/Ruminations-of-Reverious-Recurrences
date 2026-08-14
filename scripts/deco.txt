@@ -1,0 +1,32 @@
+//----- Green flag events ---------------------------------------------------------------------------------------------
+
+WhenGreenFlagClicked()
+{
+    Forever
+    {
+        Looks.SwitchCostumeTo(costume1);
+        Looks.SetSizeTo(600);
+        Looks.SwitchCostumeTo(AREA);
+        Motion.GoToXY((0 - MAP X), (0 - MAP Y));
+        Looks.Show();
+        If (Battleover? == 0)
+        {
+            Looks.Hide();
+        }
+        Looks.SetEffectTo(BRIGHTNESS, 0);
+    }
+}
+
+
+//----- Costumes ------------------------------------------------------------------------------------------------------
+
+costume1.png
+costume2.svg
+costume3.svg
+costume4.svg
+costume5.svg
+
+
+//----- Sounds --------------------------------------------------------------------------------------------------------
+
+pop.wav

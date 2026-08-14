@@ -1,0 +1,94 @@
+//----- Variables -----------------------------------------------------------------------------------------------------
+
+F = 0.01
+
+
+
+//----- Green flag events ---------------------------------------------------------------------------------------------
+
+WhenGreenFlagClicked()
+{
+    Looks.SetSizeTo(25);
+    Forever
+    {
+        Motion.PointInDirection(followd[(List.Length(followx) - 16)]);
+        Motion.GoToXY((followx[(List.Length(followx) - 16)] - MAP X), (followy[(List.Length(followx) - 16)] - MAP Y));
+        Looks.Hide();
+        If ((Battleover? == 1) And (AREA > 2))
+        {
+            Looks.Show();
+        }
+        Call FFOUNT;
+    }
+}
+
+WhenGreenFlagClicked()
+{
+    Forever
+    {
+        Repeat (10)
+        {
+            If (Sensing.Of(CMOVINGH, Overworld Player) > 0)
+            {
+            }
+            Else
+            {
+                Looks.SwitchCostumeTo(costume1);
+            }
+        }
+        If (Sensing.Of(CMOVINGH, Overworld Player) > 0)
+        {
+            Looks.NextCostume();
+        }
+        Else
+        {
+            Looks.SwitchCostumeTo(costume1);
+        }
+    }
+}
+
+
+//----- Custom blocks -------------------------------------------------------------------------------------------------
+
+Define FFOUNT (warp=true)
+{
+    Looks.SetSizeTo(1);
+    F = 1;
+    Motion.ChangeYBy(-16);
+    If (Not (Sensing.TouchingObject(Map)))
+    {
+        F = 0.01;
+    }
+    If (F == 1)
+    {
+        Repeat Until (F == 0.01)
+        {
+            Motion.Move(F);
+            If (Not (Sensing.TouchingObject(Map)))
+            {
+                F = 0;
+            }
+            Motion.Move((0 - F));
+            F += 0.01;
+            Motion.TurnRight(22.5);
+        }
+        Motion.PointInDirection(Motion.XPosition());
+        F = -1;
+        Looks.SetSizeTo(1);
+    }
+    Motion.ChangeYBy(16);
+    Looks.SetSizeTo(25);
+}
+
+
+//----- Costumes ------------------------------------------------------------------------------------------------------
+
+costume1.png
+costume2.png
+costume3.png
+costume4.png
+
+
+//----- Sounds --------------------------------------------------------------------------------------------------------
+
+pop.wav
