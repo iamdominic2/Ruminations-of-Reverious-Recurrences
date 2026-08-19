@@ -8,9 +8,9 @@ A traditional turn-based role-playing game where you discover your true identity
 The twist compared to "normal" RPGS is that you heal all HP/MP after each encounter to eliminate the traditional-but-outdated idea of resource management between battles; after all, most people don't like this!<BR>
 On the field, move with your mouse, WASD, or arrow keys. Press the "i" button to check Items and Status.<BR>
 Encounters are more likely to occur where there are objects, e.g., trees. Pick up items along the way!<BR>
-In battle, you will be able to select commands right before a character's action, and then the character will perform the action you select, provided that there is nothing restricting the action.<BR>
+In battle, you will be able to select commands right before a character's action, and then the character will perform the action you select, provided that nothing is restricting the action.<BR>
 Be sure to save at the blue circles! (There is one at the start of each area AND also before the boss)<BR>
-Be sure not to be underleveled for the boss! Train to the maximum possible potential for each area and learn new skills along the way! Finally, have fun!
+Be sure not to be underleveled for the boss! Train to your full potential in each area and learn new skills along the way! Finally, have fun!
 <img width="623" height="453" alt="field2" src="https://github.com/user-attachments/assets/1ddfd60a-b334-46ad-be8e-a7403f762526" />
 
 This is probably the first of my games to have a proper story.<BR>
