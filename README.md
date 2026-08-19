@@ -5,16 +5,23 @@
 A traditional turn-based role-playing game where you discover your true identity by venturing through four fields! And then you sense something eerie... play to see more...<BR>
 <img width="598" height="406" alt="field" src="https://github.com/user-attachments/assets/ec098e06-197b-4ac4-bba0-b1f2cf2bc369" />
 
-The twist compared to "normal" RPGS is that you heal all HP/MP after each encounter to eliminate the traditional-but-outdated idea of resource management between battles; after all, most people don't like this!<BR>
-On the field, move with your mouse, WASD, or arrow keys. Press the "i" button to check Items and Status.<BR>
-Encounters are more likely to occur where there are objects, e.g., trees. Pick up items along the way!<BR>
-In battle, you will be able to select commands right before a character's action, and then the character will perform the action you select, provided that nothing is restricting the action.<BR>
-Be sure to save at the blue circles! (There is one at the start of each area AND also before the boss)<BR>
+The twist compared to "normal" RPGS is that you heal all HP/MP after each encounter to eliminate the traditional-but-outdated idea of resource management between battles; after all, most people don't like this!
+
+On the field, move with your mouse, WASD, or arrow keys. Press the "i" button to check Items and Status.
+
+Encounters are more likely to occur where there are objects, e.g., trees. Pick up items along the way!
+
+In battle, you will be able to select commands right before a character's action, and then the character will perform the action you select, provided that nothing is restricting the action.
+
+Be sure to save at the blue circles! (There is one at the start of each area AND also before the boss)
+
 Be sure not to be underleveled for the boss! Train to your full potential in each area and learn new skills along the way! Finally, have fun!
 <img width="623" height="453" alt="field2" src="https://github.com/user-attachments/assets/1ddfd60a-b334-46ad-be8e-a7403f762526" />
 
-This is probably the first of my games to have a proper story.<BR>
-Essentially, this game likely took the most hours to make out of all my games. <BR>
+This is probably the first of my games to have a proper story. I made this after maturing in philosophical and epistemological ideas, e.t.c. after talking a *long* break due to temporary academic struggles.
+
+Essentially, this game likely took the most hours to make out of all my games.
+
 Though I am glad I did manage to make something this big, I haven't done that in a while, or ever.
 <img width="604" height="455" alt="kingslime" src="https://github.com/user-attachments/assets/225cc758-9206-4967-9a8d-c9c254418fc6" />
 
