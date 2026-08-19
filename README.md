@@ -2,6 +2,8 @@
 
 **Play in your browser! https://iamdominic2.github.io/Ruminations-of-Reverious-Recurrences/**
 
+Scratch link: https://scratch.mit.edu/projects/889388814/
+
 A traditional turn-based role-playing game where you discover your true identity by venturing through four fields! And then you sense something eerie... play to see more...<BR>
 <img width="598" height="406" alt="field" src="https://github.com/user-attachments/assets/ec098e06-197b-4ac4-bba0-b1f2cf2bc369" />
 
