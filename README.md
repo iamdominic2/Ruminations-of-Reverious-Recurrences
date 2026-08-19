@@ -1,11 +1,11 @@
 # Ruminations of Reverious Recurrences
 
-**Link= https://iamdominic2.github.io/Ruminations-of-Reverious-Recurrences/**
+**Play in your browser! https://iamdominic2.github.io/Ruminations-of-Reverious-Recurrences/**
 
 A traditional turn-based role-playing game where you discover your true identity by venturing through four fields! And then you sense something eerie... play to see more...
 <img width="1197" height="912" alt="field" src="https://github.com/user-attachments/assets/ec098e06-197b-4ac4-bba0-b1f2cf2bc369" />
 
-Thw twist compared to "normal" RPGS is that you heal all HP/MP after each encounter to eliminate the traditional-but-outdated idea of resource management between battles; after all, most people don't like this!<BR>
+The twist compared to "normal" RPGS is that you heal all HP/MP after each encounter to eliminate the traditional-but-outdated idea of resource management between battles; after all, most people don't like this!<BR>
 On the field, move with your mouse, WASD, or arrow keys. Press the "i" button to check Items and Status.<BR>
 Encounters are more likely to occur where there are objects, e.g., trees. Pick up items along the way!<BR>
 In battle, you will be able to select commands right before a character's action, and then the character will perform the action you select, provided that there is nothing restricting the action.<BR>
