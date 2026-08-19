@@ -2,7 +2,7 @@
 
 **Play in your browser! https://iamdominic2.github.io/Ruminations-of-Reverious-Recurrences/**
 
-A traditional turn-based role-playing game where you discover your true identity by venturing through four fields! And then you sense something eerie... play to see more...
+A traditional turn-based role-playing game where you discover your true identity by venturing through four fields! And then you sense something eerie... play to see more...<BR>
 <img width="598" height="406" alt="field" src="https://github.com/user-attachments/assets/ec098e06-197b-4ac4-bba0-b1f2cf2bc369" />
 
 The twist compared to "normal" RPGS is that you heal all HP/MP after each encounter to eliminate the traditional-but-outdated idea of resource management between battles; after all, most people don't like this!<BR>
