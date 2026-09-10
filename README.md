@@ -17,7 +17,7 @@ In battle, you will be able to select commands right before a character's action
 
 Be sure to save at the blue circles! (There is one at the start of each area AND also before the boss)
 
-Be sure not to be underleveled for the boss! Train to your full potential in each area and learn new skills along the way! Finally, have fun!
+Be sure not to be underleveled for the boss! Train to your full potential in each area and learn new skills along the way! Finally, have fun!<br>
 <img width="623" height="453" alt="field2" src="https://github.com/user-attachments/assets/1ddfd60a-b334-46ad-be8e-a7403f762526" />
 
 This is probably the first of my games to have a proper story. I made this after maturing in philosophical and epistemological ideas, e.t.c. after talking a *long* break due to temporary academic struggles.
