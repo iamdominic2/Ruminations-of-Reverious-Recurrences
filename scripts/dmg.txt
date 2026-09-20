@@ -1,11 +1,23 @@
-//----- Green flag events ---------------------------------------------------------------------------------------------
+//----- Broadcast received events -------------------------------------------------------------------------------------
 
-WhenGreenFlagClicked()
+WhenBroadcastReceived(aaastart)
 {
     Forever
     {
         Call gen;
     }
+}
+
+WhenBroadcastReceived(aareset)
+{
+    Stop(other scripts in sprite);
+    Control.DeleteThisClone();
+}
+
+WhenBroadcastReceived(aareset)
+{
+    Stop(other scripts in sprite);
+    Control.DeleteThisClone();
 }
 
 

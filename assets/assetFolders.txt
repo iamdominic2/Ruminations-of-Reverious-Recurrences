@@ -25,3 +25,4 @@
 "rbtoggle/cave"
 "End"
 "Title screen2"
+"Reset"

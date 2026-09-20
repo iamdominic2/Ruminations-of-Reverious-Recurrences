@@ -7,9 +7,27 @@ target = 0
 
 
 
-//----- Green flag events ---------------------------------------------------------------------------------------------
+//----- Broadcast received events -------------------------------------------------------------------------------------
 
-WhenGreenFlagClicked()
+WhenBroadcastReceived(aaastart)
+{
+    Forever
+    {
+        If (List.Length(A Message Log) > (msg scroll + 0.1))
+        {
+            msg scroll += 0.25;
+        }
+        Else
+        {
+            If (List.Length(A Message Log) < 4)
+            {
+                msg scroll = 3.99;
+            }
+        }
+    }
+}
+
+WhenBroadcastReceived(aaastart)
 {
     Looks.SwitchCostumeTo(10);
     Looks.Hide();
@@ -166,26 +184,11 @@ WhenGreenFlagClicked()
     }
 }
 
-WhenGreenFlagClicked()
+WhenBroadcastReceived(aareset)
 {
-    Forever
-    {
-        If (List.Length(A Message Log) > (msg scroll + 0.1))
-        {
-            msg scroll += 0.25;
-        }
-        Else
-        {
-            If (List.Length(A Message Log) < 4)
-            {
-                msg scroll = 3.99;
-            }
-        }
-    }
+    Stop(other scripts in sprite);
+    Control.DeleteThisClone();
 }
-
-
-//----- Broadcast received events -------------------------------------------------------------------------------------
 
 WhenBroadcastReceived(Delete Text)
 {
@@ -197,10 +200,6 @@ WhenBroadcastReceived(End)
     Stop(other scripts in sprite);
     Looks.Hide();
     Control.DeleteThisClone();
-}
-
-WhenBroadcastReceived(showstatus)
-{
 }
 
 

@@ -1,6 +1,6 @@
-//----- Green flag events ---------------------------------------------------------------------------------------------
+//----- Broadcast received events -------------------------------------------------------------------------------------
 
-WhenGreenFlagClicked()
+WhenBroadcastReceived(aaastart)
 {
     Event.Broadcast("del.clone2");
     statusframe = 0;
@@ -35,8 +35,11 @@ WhenGreenFlagClicked()
     }
 }
 
-
-//----- Broadcast received events -------------------------------------------------------------------------------------
+WhenBroadcastReceived(aareset)
+{
+    Stop(other scripts in sprite);
+    Control.DeleteThisClone();
+}
 
 WhenBroadcastReceived(del.clone2)
 {

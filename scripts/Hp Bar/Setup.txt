@@ -6,9 +6,9 @@ target = 0
 
 
 
-//----- Green flag events ---------------------------------------------------------------------------------------------
+//----- Broadcast received events -------------------------------------------------------------------------------------
 
-WhenGreenFlagClicked()
+WhenBroadcastReceived(aaastart)
 {
     List.DeleteAll(Character HP);
     List.DeleteAll(Character exp);
@@ -127,6 +127,12 @@ WhenGreenFlagClicked()
             }
         }
     }
+}
+
+WhenBroadcastReceived(aareset)
+{
+    Stop(other scripts in sprite);
+    Control.DeleteThisClone();
 }
 
 

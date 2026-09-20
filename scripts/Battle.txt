@@ -1,26 +1,29 @@
 //----- Variables -----------------------------------------------------------------------------------------------------
 
 attacker = 1
-counter t = 1
+counter t = 2
 para'd = 0
 target = 2
 
 
 
-//----- Green flag events ---------------------------------------------------------------------------------------------
+//----- Broadcast received events -------------------------------------------------------------------------------------
 
-WhenGreenFlagClicked()
+WhenBroadcastReceived(aaastart)
 {
     music state = 1;
 }
 
-WhenGreenFlagClicked()
+WhenBroadcastReceived(aaastart)
 {
     attacker = 1;
 }
 
-
-//----- Broadcast received events -------------------------------------------------------------------------------------
+WhenBroadcastReceived(aareset)
+{
+    Stop(other scripts in sprite);
+    Control.DeleteThisClone();
+}
 
 WhenBroadcastReceived(BENC)
 {

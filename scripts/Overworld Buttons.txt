@@ -1,12 +1,20 @@
-//----- Variables -----------------------------------------------------------------------------------------------------
+//----- Sprite clicked events -----------------------------------------------------------------------------------------
 
-attacker = 0
+WhenThisSpriteClicked()
+{
+    If (Not ((story despite battle == 1)))
+    {
+        If ((Sensing.MouseX() < -203) And (Sensing.MouseY() > 144))
+        {
+            Call MENU;
+        }
+    }
+}
 
 
+//----- Broadcast received events -------------------------------------------------------------------------------------
 
-//----- Green flag events ---------------------------------------------------------------------------------------------
-
-WhenGreenFlagClicked()
+WhenBroadcastReceived(aaastart)
 {
     Costume.GoToFrontBack(back);
     Control.Wait(1);
@@ -42,26 +50,11 @@ WhenGreenFlagClicked()
     }
 }
 
-WhenGreenFlagClicked()
+WhenBroadcastReceived(aareset)
 {
+    Stop(other scripts in sprite);
+    Control.DeleteThisClone();
 }
-
-
-//----- Sprite clicked events -----------------------------------------------------------------------------------------
-
-WhenThisSpriteClicked()
-{
-    If (Not ((story despite battle == 1)))
-    {
-        If ((Sensing.MouseX() < -203) And (Sensing.MouseY() > 144))
-        {
-            Call MENU;
-        }
-    }
-}
-
-
-//----- Broadcast received events -------------------------------------------------------------------------------------
 
 WhenBroadcastReceived(End)
 {
@@ -164,13 +157,6 @@ Define MENU (warp=false)
         }
     }
 }
-
-
-//----- Orphaned blocks -----------------------------------------------------------------------------------------------
-
-(760 - 610);
-
-(21 * 1.2);
 
 
 //----- Costumes ------------------------------------------------------------------------------------------------------

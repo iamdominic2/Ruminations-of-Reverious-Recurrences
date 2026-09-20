@@ -4,9 +4,9 @@ clone no item = 10
 
 
 
-//----- Green flag events ---------------------------------------------------------------------------------------------
+//----- Broadcast received events -------------------------------------------------------------------------------------
 
-WhenGreenFlagClicked()
+WhenBroadcastReceived(aaastart)
 {
     Looks.Hide();
     List.DeleteAll(Collecteditems);
@@ -21,6 +21,12 @@ WhenGreenFlagClicked()
         clone no item += 1;
         Control.CreateCloneOf(_myself_);
     }
+}
+
+WhenBroadcastReceived(aareset)
+{
+    Stop(other scripts in sprite);
+    Control.DeleteThisClone();
 }
 
 

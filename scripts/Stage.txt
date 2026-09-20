@@ -2,30 +2,30 @@
 
 action = 1
 animation = B
-ani x offset = 33
+ani x offset = 0
 AREA = 1
-attack = 093
+attack = 018
 Battleover? = 1
 buttoned = 0
 c73 = 19
 c91 = 13
 c106 = 13
 ctext = 0
-def = 46
-dmgnobcut = 3
+def = 08
+dmgnobcut = 2
 Enemy = 1
-enemy1killed = 1
-EnemyHP = -136
-Enemy No.2 = 13
+enemy1killed = 0
+EnemyHP = 19
+Enemy No.2 = 0
 Experience = 0
 hover = 0
-HOVERITEM = S
-hp = 320
+HOVERITEM = 0
+hp = 60
 loadb = 0
-lvl = 25
+lvl = 1
 MAP X = -1344
 MAP Y = 92
-max = 320
+max = 60
 message delay = 0
 msg831 = Celeste healed 80 HP!
 msg scroll = 3.99
@@ -34,26 +34,26 @@ music state = 1
 power = 5
 RBtoggle = 0
 REV ENEMY = 20
-saveflagc = 0
+saveflagc = 13
 sc = 10
 sdb frame = 11
 s string = 0000001000000
 Stage: attacker = 0
 Stage: target = 0
-Start Point = 840042902.656
+Start Point = 843215006.109
 statusframe = 0
 status string = 
 story despite battle = 0
-t = 1230
+t = 756
 TD AGILITY = 14
 TD GUARD = 12
 TD PWR = 86
 TD StatPT = 0
 TEMP EXP = 987
 TEMP NEXT = 113
-timer = 7
+timer = 5
 title screen = 1
-togainexp = 204
+togainexp = 0
 trigger effect? = 0
 TurnOver = 0
 txtcutoff = 1
@@ -533,8 +533,12 @@ status order = {
     Corruption
     Paused
 }
-turn calc = { }
-turn order = { }
+turn calc = { 
+    
+}
+turn order = { 
+    5
+}
 Unlocked skills = { }
 zAdditional HP characters (*10) = { 
     5
@@ -555,6 +559,14 @@ zoom in animations = {
 //----- Green flag events ---------------------------------------------------------------------------------------------
 
 WhenGreenFlagClicked()
+{
+    Sound.SetEffectTo(PITCH, -150);
+}
+
+
+//----- Broadcast received events -------------------------------------------------------------------------------------
+
+WhenBroadcastReceived(aaastart)
 {
     Control.Wait(1);
     Repeat Until (title screen == 0)
@@ -579,7 +591,29 @@ WhenGreenFlagClicked()
     }
 }
 
-WhenGreenFlagClicked()
+WhenBroadcastReceived(aaastart)
+{
+    List.DeleteAll(damage number color);
+    List.DeleteAll(damage number text);
+    List.DeleteAll(damage number x);
+    List.DeleteAll(followx);
+    List.DeleteAll(followy);
+}
+
+WhenBroadcastReceived(aaastart)
+{
+    List.Hide(Items);
+    t = 0;
+    List.DeleteAll(A Message Log);
+    Forever
+    {
+        Looks.SetEffectTo(COLOR, 0);
+        Looks.SetEffectTo(WHIRL, ((cos(t) + 0) * 3));
+        t += 6;
+    }
+}
+
+WhenBroadcastReceived(aaastart)
 {
     List.DeleteItem(flags, List.IndexOf(flags, "diethart"));
     Sound.SetVolumeTo(80);
@@ -602,31 +636,11 @@ WhenGreenFlagClicked()
     }
 }
 
-WhenGreenFlagClicked()
+WhenBroadcastReceived(aareset)
 {
-    List.Hide(Items);
-    t = 0;
-    List.DeleteAll(A Message Log);
-    Forever
-    {
-        Looks.SetEffectTo(COLOR, 0);
-        Looks.SetEffectTo(WHIRL, ((cos(t) + 0) * 3));
-        t += 6;
-    }
+    Stop(other scripts in sprite);
+    Control.DeleteThisClone();
 }
-
-WhenGreenFlagClicked()
-{
-    Sound.SetEffectTo(PITCH, -130);
-    List.DeleteAll(damage number color);
-    List.DeleteAll(damage number text);
-    List.DeleteAll(damage number x);
-    List.DeleteAll(followx);
-    List.DeleteAll(followy);
-}
-
-
-//----- Broadcast received events -------------------------------------------------------------------------------------
 
 WhenBroadcastReceived(End)
 {

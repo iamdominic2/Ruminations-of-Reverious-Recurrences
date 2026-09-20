@@ -1,0 +1,57 @@
+//----- Green flag events ---------------------------------------------------------------------------------------------
+
+WhenGreenFlagClicked()
+{
+    Looks.Show();
+    Event.Broadcast("aaastart");
+}
+
+
+//----- Sprite clicked events -----------------------------------------------------------------------------------------
+
+WhenThisSpriteClicked()
+{
+    title screen = 1;
+    Event.BroadcastAndWait("aareset");
+    Event.Broadcast("aaastart");
+}
+
+
+//----- Broadcast received events -------------------------------------------------------------------------------------
+
+WhenBroadcastReceived(aaastart)
+{
+    Forever
+    {
+        Looks.SetEffectTo(GHOST, 100);
+        If (title screen == 0)
+        {
+            Looks.SetEffectTo(GHOST, 70);
+            Costume.GoToFrontBack(front);
+            If Sensing.TouchingObject(_mouse_)
+            {
+                Looks.ClearGraphicEffects();
+            }
+        }
+    }
+}
+
+WhenBroadcastReceived(aareset)
+{
+    Control.DeleteThisClone();
+}
+
+WhenBroadcastReceived(End)
+{
+    Looks.Hide();
+}
+
+
+//----- Costumes ------------------------------------------------------------------------------------------------------
+
+costume1.svg
+
+
+//----- Sounds --------------------------------------------------------------------------------------------------------
+
+pop.wav

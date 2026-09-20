@@ -7,17 +7,20 @@ target = 0
 
 
 
-//----- Green flag events ---------------------------------------------------------------------------------------------
+//----- Broadcast received events -------------------------------------------------------------------------------------
 
-WhenGreenFlagClicked()
+WhenBroadcastReceived(aaastart)
 {
     Motion.GoToXY(90, -16);
     Enemy = 1;
     Looks.Hide();
 }
 
-
-//----- Broadcast received events -------------------------------------------------------------------------------------
+WhenBroadcastReceived(aareset)
+{
+    Stop(other scripts in sprite);
+    Control.DeleteThisClone();
+}
 
 WhenBroadcastReceived(BENC)
 {

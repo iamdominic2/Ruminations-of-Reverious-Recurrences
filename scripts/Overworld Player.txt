@@ -1,20 +1,45 @@
 //----- Variables -----------------------------------------------------------------------------------------------------
 
-attacker = 0
-CMOVINGH = 0
-counter t = 0
+CMOVINGH = 1
 F = 67
-para'd = 0
 STEP = 0
 sx = 0
 sy = 0
-target = 0
 
 
 
-//----- Green flag events ---------------------------------------------------------------------------------------------
+//----- Broadcast received events -------------------------------------------------------------------------------------
 
-WhenGreenFlagClicked()
+WhenBroadcastReceived(aaastart)
+{
+    RBtoggle = 0;
+    Forever
+    {
+        If (Sensing.TouchingObject(rbtoggle/cave) And (AREA == 3))
+        {
+            Sound.Play(Alert);
+            RBtoggle = (1 - RBtoggle);
+            Wait Until (Not (Sensing.TouchingObject(rbtoggle/cave)));
+            Control.Wait(0.3);
+            If (Not (List.ContainsItem(flags, "rbtog")))
+            {
+                Mspeed = 0;
+                Call Story line add("(These things, huh? Welp!") wait input("") end of section("");
+                Call Story line add("They alternate between... red.. and.. blue.)") wait input(1) end of section("");
+                Call Story line add("Drayden: The blood of my enemies and") wait input("") end of section("");
+                Call Story line add("the color of my clothes!") wait input(1) end of section("");
+                Call Story line add("Lyra: The colour of what is said to be") wait input("") end of section("");
+                Call Story line add("hell and the colour of the sky!") wait input(1) end of section(1);
+                Call Story line add("(Still, these things are a fun, or not-so-fun") wait input("") end of section("");
+                Call Story line add("teaser for my wandering brain?)") wait input(1) end of section("");
+                Mspeed = 8.1;
+                List.Add(flags, "rbtog");
+            }
+        }
+    }
+}
+
+WhenBroadcastReceived(aaastart)
 {
     MAP X = -1344;
     MAP Y = 92;
@@ -827,35 +852,7 @@ WhenGreenFlagClicked()
     }
 }
 
-WhenGreenFlagClicked()
-{
-    F = 67;
-    Forever
-    {
-        If (Battleover? == 1)
-        {
-            If (F == -1)
-            {
-                Sound.PlayUntilDone(Sneaker Squeak);
-            }
-            If (F == -2)
-            {
-                Sound.PlayUntilDone(Operator.Random(3 , 6));
-            }
-            List.ReplaceItem(Character HP, 1, (10 * (Character levels[1] + zAdditional HP characters (*10)[1])));
-            If (Not ((Operator.Join(Character HP[2], "A") == "-0A")))
-            {
-                List.ReplaceItem(Character HP, 2, (10 * (Character levels[2] + zAdditional HP characters (*10)[2])));
-            }
-            If (Not ((Operator.Join(Character HP[3], "A") == "-0A")))
-            {
-                List.ReplaceItem(Character HP, 3, (10 * (Character levels[3] + zAdditional HP characters (*10)[3])));
-            }
-        }
-    }
-}
-
-WhenGreenFlagClicked()
+WhenBroadcastReceived(aaastart)
 {
     Forever
     {
@@ -891,37 +888,39 @@ WhenGreenFlagClicked()
     }
 }
 
-WhenGreenFlagClicked()
+WhenBroadcastReceived(aaastart)
 {
-    RBtoggle = 0;
+    F = 67;
     Forever
     {
-        If (Sensing.TouchingObject(rbtoggle/cave) And (AREA == 3))
+        If (Battleover? == 1)
         {
-            Sound.Play(Alert);
-            RBtoggle = (1 - RBtoggle);
-            Wait Until (Not (Sensing.TouchingObject(rbtoggle/cave)));
-            Control.Wait(0.3);
-            If (Not (List.ContainsItem(flags, "rbtog")))
+            If (F == -1)
             {
-                Mspeed = 0;
-                Call Story line add("(These things, huh? Welp!") wait input("") end of section("");
-                Call Story line add("They alternate between... red.. and.. blue.)") wait input(1) end of section("");
-                Call Story line add("Drayden: The blood of my enemies and") wait input("") end of section("");
-                Call Story line add("the color of my clothes!") wait input(1) end of section("");
-                Call Story line add("Lyra: The colour of what is said to be") wait input("") end of section("");
-                Call Story line add("hell and the colour of the sky!") wait input(1) end of section(1);
-                Call Story line add("(Still, these things are a fun, or not-so-fun") wait input("") end of section("");
-                Call Story line add("teaser for my wandering brain?)") wait input(1) end of section("");
-                Mspeed = 8.1;
-                List.Add(flags, "rbtog");
+                Sound.PlayUntilDone(Sneaker Squeak);
+            }
+            If (F == -2)
+            {
+                Sound.PlayUntilDone(Operator.Random(3 , 6));
+            }
+            List.ReplaceItem(Character HP, 1, (10 * (Character levels[1] + zAdditional HP characters (*10)[1])));
+            If (Not ((Operator.Join(Character HP[2], "A") == "-0A")))
+            {
+                List.ReplaceItem(Character HP, 2, (10 * (Character levels[2] + zAdditional HP characters (*10)[2])));
+            }
+            If (Not ((Operator.Join(Character HP[3], "A") == "-0A")))
+            {
+                List.ReplaceItem(Character HP, 3, (10 * (Character levels[3] + zAdditional HP characters (*10)[3])));
             }
         }
     }
 }
 
-
-//----- Broadcast received events -------------------------------------------------------------------------------------
+WhenBroadcastReceived(aareset)
+{
+    Stop(other scripts in sprite);
+    Control.DeleteThisClone();
+}
 
 WhenBroadcastReceived(debug sssssssssssssssss)
 {
@@ -1115,11 +1114,6 @@ Define Story line add(string .) wait input(string wait input) end of section(str
     story despite battle = 0;
     List.DeleteItem(A Message Log, List.Length(A Message Log));
 }
-
-
-//----- Orphaned blocks -----------------------------------------------------------------------------------------------
-
-Call Story line add("(Isn't this what it is turning into?)") wait input(1) end of section("");
 
 
 //----- Costumes ------------------------------------------------------------------------------------------------------

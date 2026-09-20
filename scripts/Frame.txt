@@ -1,15 +1,6 @@
-//----- Variables -----------------------------------------------------------------------------------------------------
+//----- Broadcast received events -------------------------------------------------------------------------------------
 
-attacker = 0
-counter t = 0
-para'd = 0
-target = 0
-
-
-
-//----- Green flag events ---------------------------------------------------------------------------------------------
-
-WhenGreenFlagClicked()
+WhenBroadcastReceived(aaastart)
 {
     Motion.GoToXY(0, 0);
     Looks.Hide();
@@ -79,8 +70,11 @@ WhenGreenFlagClicked()
     }
 }
 
-
-//----- Broadcast received events -------------------------------------------------------------------------------------
+WhenBroadcastReceived(aareset)
+{
+    Stop(other scripts in sprite);
+    Control.DeleteThisClone();
+}
 
 WhenBroadcastReceived(End)
 {

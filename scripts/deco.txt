@@ -1,6 +1,6 @@
-//----- Green flag events ---------------------------------------------------------------------------------------------
+//----- Broadcast received events -------------------------------------------------------------------------------------
 
-WhenGreenFlagClicked()
+WhenBroadcastReceived(aaastart)
 {
     Forever
     {
@@ -15,6 +15,12 @@ WhenGreenFlagClicked()
         }
         Looks.SetEffectTo(BRIGHTNESS, 0);
     }
+}
+
+WhenBroadcastReceived(aareset)
+{
+    Stop(other scripts in sprite);
+    Control.DeleteThisClone();
 }
 
 

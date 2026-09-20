@@ -4,25 +4,9 @@ F = 0.01
 
 
 
-//----- Green flag events ---------------------------------------------------------------------------------------------
+//----- Broadcast received events -------------------------------------------------------------------------------------
 
-WhenGreenFlagClicked()
-{
-    Looks.SetSizeTo(25);
-    Forever
-    {
-        Motion.PointInDirection(followd[(List.Length(followx) - 16)]);
-        Motion.GoToXY((followx[(List.Length(followx) - 16)] - MAP X), (followy[(List.Length(followx) - 16)] - MAP Y));
-        Looks.Hide();
-        If ((Battleover? == 1) And (AREA > 2))
-        {
-            Looks.Show();
-        }
-        Call FFOUNT;
-    }
-}
-
-WhenGreenFlagClicked()
+WhenBroadcastReceived(aaastart)
 {
     Forever
     {
@@ -45,6 +29,28 @@ WhenGreenFlagClicked()
             Looks.SwitchCostumeTo(costume1);
         }
     }
+}
+
+WhenBroadcastReceived(aaastart)
+{
+    Looks.SetSizeTo(25);
+    Forever
+    {
+        Motion.PointInDirection(followd[(List.Length(followx) - 16)]);
+        Motion.GoToXY((followx[(List.Length(followx) - 16)] - MAP X), (followy[(List.Length(followx) - 16)] - MAP Y));
+        Looks.Hide();
+        If ((Battleover? == 1) And (AREA > 2))
+        {
+            Looks.Show();
+        }
+        Call FFOUNT;
+    }
+}
+
+WhenBroadcastReceived(aareset)
+{
+    Stop(other scripts in sprite);
+    Control.DeleteThisClone();
 }
 
 

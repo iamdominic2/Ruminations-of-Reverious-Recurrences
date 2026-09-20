@@ -8,29 +8,6 @@ target = 0
 
 
 
-//----- Green flag events ---------------------------------------------------------------------------------------------
-
-WhenGreenFlagClicked()
-{
-    clone? = 0;
-    hover = 0;
-    buttoned = 0;
-    story despite battle = 0;
-    Costume.GoToFrontBack(front);
-    Looks.Show();
-    Looks.SwitchCostumeTo(TS1);
-    Motion.GoToXY(0, 20);
-    Control.CreateCloneOf(_myself_);
-    Looks.NextCostume();
-    Motion.GoToXY(0, -55);
-    Control.CreateCloneOf(_myself_);
-    Looks.NextCostume();
-    Motion.GoToXY(0, -130);
-    Control.CreateCloneOf(_myself_);
-    Looks.Hide();
-}
-
-
 //----- Sprite clicked events -----------------------------------------------------------------------------------------
 
 WhenThisSpriteClicked()
@@ -176,6 +153,32 @@ WhenThisSpriteClicked()
 
 
 //----- Broadcast received events -------------------------------------------------------------------------------------
+
+WhenBroadcastReceived(aaastart)
+{
+    clone? = 0;
+    hover = 0;
+    buttoned = 0;
+    story despite battle = 0;
+    Costume.GoToFrontBack(front);
+    Looks.Show();
+    Looks.SwitchCostumeTo(TS1);
+    Motion.GoToXY(0, -11);
+    Control.CreateCloneOf(_myself_);
+    Looks.NextCostume();
+    Motion.GoToXY(0, -88);
+    Control.CreateCloneOf(_myself_);
+    Looks.NextCostume();
+    Motion.GoToXY(0, -130);
+    Control.CreateCloneOf(_myself_);
+    Looks.Hide();
+}
+
+WhenBroadcastReceived(aareset)
+{
+    Stop(other scripts in sprite);
+    Control.DeleteThisClone();
+}
 
 WhenBroadcastReceived(del.clone)
 {
@@ -381,6 +384,9 @@ Define Sp.Clone (warp=true)
 //----- Orphaned blocks -----------------------------------------------------------------------------------------------
 
 List.Add(A Message Log, "");
+
+Sound.Play(die);
+List.DeleteAll(save data);
 
 
 //----- Costumes ------------------------------------------------------------------------------------------------------

@@ -15,6 +15,15 @@ WhenGreenFlagClicked()
 }
 
 
+//----- Broadcast received events -------------------------------------------------------------------------------------
+
+WhenBroadcastReceived(aareset)
+{
+    Stop(other scripts in sprite);
+    Control.DeleteThisClone();
+}
+
+
 //----- Costumes ------------------------------------------------------------------------------------------------------
 
 costume1.svg
