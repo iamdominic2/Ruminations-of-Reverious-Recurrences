@@ -31,4 +31,4 @@ The engine is quite complex at first glance, but I have added some comments to d
 
 The core logic of the overworld and battle systems is implemented in the 17) Overworld Player and 3) Battle Engine, respectively.
 
-By the way, this was made before people thought AI slop was actually slop. This was more of a coding exercise than a graphical one. The graphics may actually explain what is so *reverious* about the *recurrences* within the game - so go your way and discover the deep themes for yourself!
+Disclosure: I was messing with AI-generated graphics becuase those were pretty new and exciting for the time. This was more of a coding exercise than a graphical one. The graphics may actually explain what is so *reverious* about the *recurrences* within the game - so go your way and discover the deep themes for yourself!
